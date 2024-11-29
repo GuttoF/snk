@@ -1,6 +1,6 @@
 # Snake AI
 
-<video width="800" width="800" style="display: block; margin: 0 auto" controls>
+<video width="800" style="display: block; margin: 0 auto" controls>
   <source src="./Docs/zerou.mp4" type="video/mp4">
 </video>
 
