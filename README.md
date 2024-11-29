@@ -1,5 +1,7 @@
 # Snake AI
 
+[![Watch the video](https://raw.githubusercontent.com/ZaqueuCavalcante/snk/master/Docs/zerou.png)](https://raw.githubusercontent.com/ZaqueuCavalcante/snk/master/Docs/zerou.mp4)
+
 <video width="800" style="display: block; margin: 0 auto" controls>
   <source src="./Docs/zerou.mp4" type="video/mp4">
 </video>
