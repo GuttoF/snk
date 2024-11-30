@@ -10,7 +10,7 @@ Nesse projeto vamos responder todas essas perguntas!
   <img src="./Docs/00_dummy_player.gif" width="600" style="border-radius: 10px; display: block; margin: auto auto" />
 </p>
 
-## 0 - Implementação do jogo
+## 1 - Implementação do jogo
 
 Acabei fazendo tudo em C#, por ser a linguagem que mais domino. Pra UI usei WPF, então infelizmente só vai rodar no Windows.
 
@@ -36,23 +36,57 @@ A ideia de separar Core, UI e Players trás algumas vantagens:
   <img src="./Docs/01_arch.png" width="700" style="border-radius: 10px; display: block; margin: 0 auto" />
 </p>
 
-## 1 - Dummy
+## 2 - Dummy
 
 Apenas segue a linha e a coluna da comida.
 
-## 2 - Neural
+## 3 - Neural
 
-
+### 3.1 - Dados de entrada
 
 <p align="center">
   <img src="./Docs/snak_nn.gif" width="900" style="border-radius: 10px; display: block; margin: 0 auto" />
 </p>
 
+### 3.2 - Treinamento
+
+<p align="center">
+  <img src="./Docs/nn_train.gif" width="900" style="display: block; margin: 0 auto" />
+</p>
+
+
+## 4 - Star
+
+### 4.1 - Limitando os caminhos possíveis
+
+<p align="center">
+  <img src="./Docs/pattern.gif" width="900" style="display: block; margin: 0 auto" />
+</p>
+
+### 4.2 - A* Pathfinder
+
+- Ideia + visualização 
 
 
 
 
-## 3 - Star
+
+
+## 5 - Versão mais simples do jogo
+
+- GIF dela
+
+- Dummy
+- Neural (treino)
+- Star
+
+## 6 - Versão completa
+
+- GIF dela
+
+- Dummy
+- Neural (treino)
+- Star
 
 
 
@@ -60,23 +94,9 @@ Apenas segue a linha e a coluna da comida.
 
 
 
-## ? - Versão mais simples
 
 
 
-
-
-
-
-
-
-
-
-## Model
-
-
-## Train
-<img src="./Docs/nn_train.gif" width="900" style="display: block; margin: 0 auto" />
 
 ### Simple version
 <img src="./Docs/simple.png" width="900" style="display: block; margin: 0 auto" />
@@ -88,11 +108,6 @@ Apenas segue a linha e a coluna da comida.
 <br>
 <video src="./Docs/best_complete_snake.mp4" width="800" style="display: block; margin: 0 auto" controls></video>
 
-## Best solver
-
-<img src="./Docs/pattern.gif" width="900" style="display: block; margin: 0 auto" />
-<br>
-<img src="./Docs/zerou.gif" width="800" style="display: block; margin: 0 auto" />
 
 ## Pathfindings
 
