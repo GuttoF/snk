@@ -6,6 +6,8 @@ Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*
 
 Nesse projeto vamos responder todas essas perguntas!
 
+<img src="./Docs/00_dummy_player.gif" width="600" style="display: block; margin: auto auto" />
+
 ## 0 - Implementação do jogo
 
 Acabei fazendo tudo em C#, por ser a linguagem que mais domino. Pra UI usei WPF, então infelizmente só vai rodar no Windows.
@@ -28,7 +30,6 @@ A ideia de separar Core, UI e Players trás algumas vantagens:
 - Dá pra avaliar o desempenho de cada player em milhares de jogos, apenas usando o Core (sem o custo de renderizar a UI)
 - Pro caso do player Neural, é possível realizar o treinamento da rede apenas usando o Core (novamente, sem o custo de renderizar a UI)
 
-<img src="./Docs/00_dummy_player.gif" width="600" style="display: block; margin: 0 auto" />
 
 
 
