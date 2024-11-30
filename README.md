@@ -32,8 +32,9 @@ A ideia de separar Core, UI e Players trás algumas vantagens:
 - Dá pra avaliar o desempenho de cada player em milhares de jogos, apenas usando o Core (sem o custo de renderizar a UI)
 - Pro caso do player Neural, é possível realizar o treinamento da rede apenas usando o Core (novamente, sem o custo de renderizar a UI)
 
-<img src="./Docs/01_arch.png" width="800" style="display: block; margin: 0 auto" />
-
+<p align="center">
+  <img src="./Docs/01_arch.png" width="700" style="display: block; margin: 0 auto" />
+</p>
 
 
 
