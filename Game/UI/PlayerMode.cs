@@ -6,7 +6,7 @@ public enum PlayerMode
 
     Dummy = 1,
 
-    Smart = 2,
+    Star = 2,
 
     Neural = 3,
 }

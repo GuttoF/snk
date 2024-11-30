@@ -1,10 +1,10 @@
 using Game.Core;
 
-namespace Game.Players.Smart;
+namespace Game.Players.Star;
 
-public static class SmartExtensions
+public static class StarExtensions
 {
-    public static List<Direction> GetSmartDirection(this Position position, int rows, int columns)
+    public static List<Direction> GetStarDirection(this Position position, int rows, int columns)
     {
         var row = position.Row;
         var column = position.Column;

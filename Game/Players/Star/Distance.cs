@@ -1,6 +1,6 @@
 using Game.Core;
 
-namespace Game.Players.Smart;
+namespace Game.Players.Star;
 
 public static class Distance
 {

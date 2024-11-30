@@ -2,7 +2,7 @@
 using Game.Core;
 using System.Windows;
 using Game.Players.Dummy;
-using Game.Players.Smart;
+using Game.Players.Star;
 using Game.Players.Neural;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -85,19 +85,19 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(40);
+			    await Task.Delay(100);
 				DummyPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();
 		    }
 	    }
 
-	    if (_playerMode == PlayerMode.Smart)
+	    if (_playerMode == PlayerMode.Star)
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
 			    await Task.Delay(40);
-				SmartPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
+				StarPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();
 		    }
@@ -178,7 +178,7 @@ public partial class MainWindow
 		{
 			Key.H => PlayerMode.Human,
 			Key.D => PlayerMode.Dummy,
-			Key.S => PlayerMode.Smart,
+			Key.S => PlayerMode.Star,
 			Key.N => PlayerMode.Neural,
 			_ => PlayerMode.Human
 		};
@@ -240,7 +240,7 @@ public partial class MainWindow
         await DrawDeadSnake();
 		await Task.Delay(1000);
 		Overlay.Visibility = Visibility.Visible;
-        OverlayText.Text = "Human | Dummy | Smart | Neural";
+        OverlayText.Text = "Human | Dummy | Neural | Star";
 	}
 
 	private async Task DrawZerou()
@@ -249,7 +249,7 @@ public partial class MainWindow
 		Overlay.Visibility = Visibility.Visible;
 		OverlayText.Text = "🐍 ZEROU 🐍";
 		await Task.Delay(2000);
-		OverlayText.Text = "Human | Dummy | Smart | Neural";
+		OverlayText.Text = "Human | Dummy | Neural | Star";
 	}
 
     private async Task DrawDeadSnake()

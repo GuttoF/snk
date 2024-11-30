@@ -66,7 +66,7 @@
             >
                 <TextBlock
                     x:Name="OverlayText"
-                    Text="Human | Dummy | Smart | Neural"
+                    Text="Human | Dummy | Neural | Star"
                     FontSize="26"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"

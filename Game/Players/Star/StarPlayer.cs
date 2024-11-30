@@ -1,14 +1,14 @@
 using Game.Core;
 
-namespace Game.Players.Smart;
+namespace Game.Players.Star;
 
-public static class SmartPlayer
+public static class StarPlayer
 {
     public static void Decide(GameStateData data, Action<Direction> snakeGoTo)
     {
         var headPosition = data.HeadPosition;
 
-        var directions = headPosition.GetSmartDirection(data.Rows, data.Columns);
+        var directions = headPosition.GetStarDirection(data.Rows, data.Columns);
         if (directions.Count == 1)
         {
             snakeGoTo(directions[0]); return;
