@@ -7,7 +7,7 @@ Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*
 Nesse projeto vamos responder todas essas perguntas!
 
 <p align="center">
-  <img src="./Docs/00_dummy_player.gif" width="600" style="display: block; margin: auto auto" />
+  <img src="./Docs/00_dummy_player.gif" width="600" style="border-radius: 10px; display: block; margin: auto auto" />
 </p>
 
 ## 0 - Implementação do jogo
@@ -33,8 +33,35 @@ A ideia de separar Core, UI e Players trás algumas vantagens:
 - Pro caso do player Neural, é possível realizar o treinamento da rede apenas usando o Core (novamente, sem o custo de renderizar a UI)
 
 <p align="center">
-  <img src="./Docs/01_arch.png" width="700" style="display: block; margin: 0 auto" />
+  <img src="./Docs/01_arch.png" width="700" style="border-radius: 10px; display: block; margin: 0 auto" />
 </p>
+
+## 1 - Dummy
+
+Apenas segue a linha e a coluna da comida.
+
+## 2 - Neural
+
+
+
+<p align="center">
+  <img src="./Docs/snak_nn.gif" width="900" style="border-radius: 10px; display: block; margin: 0 auto" />
+</p>
+
+
+
+
+
+## 3 - Star
+
+
+
+
+
+
+
+## ? - Versão mais simples
+
 
 
 
@@ -46,7 +73,7 @@ A ideia de separar Core, UI e Players trás algumas vantagens:
 
 
 ## Model
-<img src="./Docs/snak_nn.gif" width="900" style="display: block; margin: 0 auto" />
+
 
 ## Train
 <img src="./Docs/nn_train.gif" width="900" style="display: block; margin: 0 auto" />
