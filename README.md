@@ -27,13 +27,13 @@ No caso dos players, temos 4 opções:
 
 Também adicionei testes automatizados que validam tanto as regras do jogo (Core) quanto ao algoritmos dos players.
 
-A ideia de separar Core, UI e Players trás algumas vantagens:
+A ideia de separar Core, UI e Players traz algumas vantagens:
 - Consigo realizar testes unitários em cada parte do sistema separadamente
 - Dá pra avaliar o desempenho de cada player em milhares de jogos, apenas usando o Core (sem o custo de renderizar a UI)
 - Pro caso do player Neural, é possível realizar o treinamento da rede apenas usando o Core (novamente, sem o custo de renderizar a UI)
 
 <p align="center">
-  <img src="./Docs/01_arch.png" width="700" style="border-radius: 10px; display: block; margin: 0 auto" />
+  <img src="./Docs/01_arch.gif" width="700" style="border-radius: 10px; display: block; margin: 0 auto" />
 </p>
 
 ## 2 - Dummy
@@ -42,13 +42,13 @@ Apenas segue a linha e a coluna da comida.
 
 ## 3 - Neural
 
-### 3.1 - Dados de entrada
+### 3.1 - Dados de entrada AAAAAAAAAAAAAA RECRIAR GIF AAAAAAAAAAAAAAAAAA
 
 <p align="center">
   <img src="./Docs/snak_nn.gif" width="900" style="border-radius: 10px; display: block; margin: 0 auto" />
 </p>
 
-### 3.2 - Treinamento
+### 3.2 - Treinamento (algoritmo genético)
 
 <p align="center">
   <img src="./Docs/nn_train.gif" width="900" style="display: block; margin: 0 auto" />
