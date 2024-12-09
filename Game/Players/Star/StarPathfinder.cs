@@ -4,16 +4,16 @@ namespace Game.Players.Star;
 
 public static class StarPathfinder
 {
-    public static string FindPath(int[,] grid, int snakeSize, Position headPosition, Position tailPosition, Position foodPosition)
+    public static string FindPath(int[,] grid, Position headPosition, Position tailPosition, Position foodPosition)
     {
-        var path = FindPathTo(grid, snakeSize, headPosition, tailPosition, foodPosition);
+        var path = FindPathTo(grid, headPosition, tailPosition, foodPosition);
         if (path == "NOT_FOUND")
-            path = FindPathTo(grid, snakeSize, headPosition, tailPosition, tailPosition);
+            path = FindPathTo(grid, headPosition, tailPosition, tailPosition);
 
         return path;
     }
 
-    private static string FindPathTo(int[,] grid, int snakeSize, Position headPosition, Position tailPosition, Position targetPosition)
+    private static string FindPathTo(int[,] grid, Position headPosition, Position tailPosition, Position targetPosition)
     {
         var rows = grid.GetLength(0);
         var columns = grid.GetLength(1);
@@ -63,7 +63,7 @@ public static class StarPathfinder
             foreach (var position in positions)
             {
                 var cell = grid[position.Row, position.Column];
-                if (cell == 0 || (cell == 3 && snakeSize > 2) || (cell == 3 && snakeSize > 2 && target == tail) || cell == 4) current.Neighbors.Add(new NodeBase(position));
+                if (cell == 0 || (cell == 3 && target == tail) || cell == 4) current.Neighbors.Add(new NodeBase(position));
             }
 
             foreach (var neighbor in current.Neighbors.Where(t => !processed.Contains(t)))

@@ -79,10 +79,7 @@ public class GameState
     {
         if (Grid.IsOutside(newHeadPosition)) return CellType.Outside;
 
-        if (newHeadPosition == Snake.GetTailPosition())
-        {
-            return Snake.Size() > 2 ? CellType.Empty : CellType.SnakeBody;
-        }
+        if (newHeadPosition == Snake.GetTailPosition()) return CellType.Empty;
 
         return Grid.GetCellAt(newHeadPosition);
     }
