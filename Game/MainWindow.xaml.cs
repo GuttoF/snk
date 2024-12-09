@@ -96,10 +96,11 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(1000);
-				StarPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
+			    await Task.Delay(100);
+				var path = StarPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();
+				DrawStarPath(path);
 		    }
 	    }
 
@@ -224,6 +225,28 @@ public partial class MainWindow
 
         var rotation = _game.Snake.HeadDirection.ToRotation();
         image.RenderTransform = new RotateTransform(rotation);
+	}
+
+	private void DrawStarPath(string path)
+	{
+		var currentPosition = _game.Snake.GetHeadPosition();
+		var foodPosition = _game.Grid.GetFoodPosition();
+
+		foreach (var dir in path[1..])
+		{
+			var direction = dir.ToDirection();
+			var nextPosition = currentPosition.MoveTo(direction);
+
+			if (nextPosition == foodPosition) break;
+
+			var image = _gridImages[nextPosition.Row, nextPosition.Column];
+			image.Source = Images.Path;
+
+			var rotation = direction.ToRotation();
+			image.RenderTransform = new RotateTransform(rotation);
+
+			currentPosition = nextPosition;
+		}
 	}
 
 	private async Task DrawCountDown()

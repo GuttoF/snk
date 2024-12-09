@@ -12,6 +12,8 @@ public static class Images
     public static readonly ImageSource DeadHead = LoadPng(nameof(DeadHead));
     public static readonly ImageSource DeadBody = LoadPng(nameof(DeadBody));
 
+    public static readonly ImageSource Path = LoadPng(nameof(Path));
+
 	private static BitmapImage LoadPng(string fileName)
 	{
 		return new BitmapImage(new Uri($"Assets/{fileName}.png", UriKind.Relative));

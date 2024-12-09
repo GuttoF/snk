@@ -30,4 +30,16 @@ public static class StarExtensions
         if (column == columns-1) return [Direction.Up];
         return [Direction.Up, Direction.Right];
     }
+
+	private static readonly Dictionary<char, Direction> DirectionToRotation = new()
+	{
+		{ 'U', Direction.Up },
+		{ 'R', Direction.Right },
+		{ 'D', Direction.Down },
+		{ 'L', Direction.Left },
+	};
+    public static Direction ToDirection(this char value)
+    {
+        return DirectionToRotation[value];
+    }
 }
