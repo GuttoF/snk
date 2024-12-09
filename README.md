@@ -15,15 +15,15 @@ Nesse projeto vamos responder todas essas perguntas!
 Acabei fazendo tudo em C#, por ser a linguagem que mais domino. Pra UI usei WPF, então infelizmente só vai rodar no Windows.
 
 Organizei o projeto em 3 partes:
-- Core: aqui fica o estado do jogo, juntamente com suas regras
-- UI: responsável por mostrar na tela o estado atual do jogo
-- Players: dão a direção pra cobra seguir, alterando o estado do jogo
+- **Core**: aqui fica o estado do jogo, juntamente com suas regras
+- **UI**: responsável por mostrar na tela o estado atual do jogo
+- **Players**: dão a direção pra cobra seguir, alterando o estado do jogo
 
 No caso dos players, temos 4 opções:
-- Human: um humano pode jogar usando o teclado
-- Dummy: um algoritmo simples (monte de if/else) que guia a cobra diretamente até a comida
-- Neural: uma rede neural que recebe dados do estado do jogo e decide pra onde a cobra deve ir
-- Star: um A* modificado que também recebe o estado do jogo e define a próxima direção da cobra
+- **Human**: um humano pode jogar usando o teclado
+- **Dummy**: um algoritmo simples (monte de if/else) que guia a cobra diretamente até a comida
+- **Neural**: uma rede neural que recebe dados do estado do jogo e decide pra onde a cobra deve ir
+- **Star**: um A* modificado que também recebe o estado do jogo e define a próxima direção da cobra
 
 Também adicionei testes automatizados que validam tanto as regras do jogo (Core) quanto ao algoritmos dos players.
 

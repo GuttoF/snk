@@ -10,7 +10,7 @@ public class UIExtensionsTests
     {
         // Arrange / Act / Assert
         CellType.Empty.ToImage().Should().Be(Images.Empty);
-        CellType.Snake.ToImage().Should().Be(Images.Body);
+        CellType.SnakeBody.ToImage().Should().Be(Images.Body);
         CellType.Food.ToImage().Should().Be(Images.Food);
     }
 

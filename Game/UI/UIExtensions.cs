@@ -10,7 +10,7 @@ public static class UIExtensions
         return value switch
         {
             CellType.Empty => Images.Empty,
-            CellType.Snake => Images.Body,
+            CellType.SnakeBody => Images.Body,
             CellType.Food => Images.Food,
             _ => Images.Empty,
         };

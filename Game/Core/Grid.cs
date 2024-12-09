@@ -40,11 +40,11 @@ public class Grid
 
     public void PutSnake(Position position)
     {
-        Put(position, CellType.Snake);
+        Put(position, CellType.SnakeBody);
     }
     public void PutSnake(int row, int column)
     {
-        Put(row, column, CellType.Snake);
+        Put(row, column, CellType.SnakeBody);
     }
 
     public void PutEmpty(Position position)

@@ -5,8 +5,12 @@ public class GameStateData
     public int Rows { get; set; }
     public int Columns { get; set; }
 
+    public int[,] Grid { get; set; }
+
+    public int SnakeSize { get; set; }
     public Position HeadPosition { get; set; }
     public Direction HeadDirection { get; set; }
+    public Position TailPosition { get; set; }
 
     public CellType HeadRight { get; set; }
     public CellType HeadDown { get; set; }

@@ -54,7 +54,7 @@ public class GameState
         var newHeadPosition = Snake.NextHeadPosition();
         var targetCell = WillHit(newHeadPosition);
 
-        if (targetCell is CellType.Outside or CellType.Snake)
+        if (targetCell is CellType.Outside or CellType.SnakeBody)
         {
             GameOver = true;
             return;
@@ -81,7 +81,7 @@ public class GameState
 
         if (newHeadPosition == Snake.GetTailPosition())
         {
-            return Snake.Size() > 2 ? CellType.Empty : CellType.Snake;
+            return Snake.Size() > 2 ? CellType.Empty : CellType.SnakeBody;
         }
 
         return Grid.GetCellAt(newHeadPosition);
@@ -93,10 +93,23 @@ public class GameState
         {
             Rows = Rows,
             Columns = Columns,
+            SnakeSize = Snake.Size(),
             HeadPosition = Snake.GetHeadPosition(),
             HeadDirection = Snake.GetHeadDirection(),
+            TailPosition = Snake.GetTailPosition(),
             FoodPosition = Grid.GetFoodPosition(),
         };
+
+        data.Grid = new int[Rows, Columns];
+		for (int row = 0; row < Rows; row++)
+		{
+			for (int column = 0; column < Columns; column++)
+			{
+                data.Grid[row, column] = (int) Grid.GetCellAt(row, column);
+			}
+		}
+        data.Grid[data.HeadPosition.Row, data.HeadPosition.Column] = (int) CellType.SnakeHead;
+        data.Grid[data.TailPosition.Row, data.TailPosition.Column] = (int) CellType.SnakeTail;
 
         data.HeadRight = WillHit(data.HeadPosition.MoveTo(Direction.Right));
         data.HeadDown = WillHit(data.HeadPosition.MoveTo(Direction.Down));

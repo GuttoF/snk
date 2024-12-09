@@ -4,9 +4,13 @@ public enum CellType
 {
     Empty = 0,
 
-    Snake = 1,
+    SnakeHead = 1,
 
-    Food = 2,
+    SnakeBody = 2,
+
+    SnakeTail = 3,
+
+    Food = 4,
 
     Outside = 69,
 }
