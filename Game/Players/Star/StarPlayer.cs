@@ -23,29 +23,13 @@ public static class StarPlayer
             snakeGoTo(directions[0]); return;
         }
 
+        var path = StarPathfinder.FindPath(data.Grid, data.HeadPosition, data.TailPosition, data.FoodPosition);
 
+        Console.WriteLine(path);
 
-
-
-
-        // Como decidir entre duas direções livres? A*
-        var firstPosition = headPosition.MoveTo(directions[0]);
-        var secondPosition = headPosition.MoveTo(directions[1]);
-
-        var foodPosition = data.FoodPosition;
-        var firstDistance = Distance.Euclidian(firstPosition, foodPosition);
-        var secondDistance = Distance.Euclidian(secondPosition, foodPosition);
-
-        if (firstDistance < secondDistance)
-        {
-            snakeGoTo(directions[0]); return;
-        }
-        if (secondDistance < firstDistance)
-        {
-            snakeGoTo(directions[1]); return;
-        }
-
-        var random = new Random();
-        snakeGoTo(directions[random.Next(2)]);
+        if (path.First() == 'R') snakeGoTo(Direction.Right);
+        if (path.First() == 'D') snakeGoTo(Direction.Down);
+        if (path.First() == 'L') snakeGoTo(Direction.Left);
+        if (path.First() == 'U') snakeGoTo(Direction.Up);
     }
 }
