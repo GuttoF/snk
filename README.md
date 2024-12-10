@@ -79,6 +79,8 @@ O treinamento dela foi feito utilizando um algortimo genético.
 
 Durante o jogo, logo antes da cobra se movimentar, os dados do estado atual do jogo são processados pela rede, que no final retorna para qual direção a cobra deve ir.
 
+#### 4.1.1 Entrada
+
 O diagrama a seguir mostra os dados de entrada da rede:
 - **Δx**: "distância" entre a cabeça da cobra e comida na direção x.
   - Na prática, é feita a subtração entre a coluna da comida e a da cobra:
@@ -99,26 +101,56 @@ Perceba que as velocidades estão relacionadas, pois se a cobra está indo:
 - Pra esquerda: **Vx=-1** e **Vy=0**
 - Pra cima: **Vx=0** e **Vy=-1**
 
-
-
-
-
 <p align="center">
   <img src="./Docs/board_nn.gif" width="900" style="border-radius: 10px; display: block; margin: 0 auto" />
 </p>
 
+#### 4.1.2 Processamento
+
+Cada linha tracejada ligando um neurônio a outro possui um determinado peso. Esse peso é um número que pode variar entre -1000 e +1000. Quando uma rede é criada, cada peso é inicializado aleatoriamente (mas ainda dentro desses limites).
+
+Cada neurônio da camada oculta recebe os 4 valores de entrada (Δx, Δy, Vx e Vy), multiplica cada valor pelo seu respectivo peso e soma tudo no final.
+
+Perceba que o valor dessa soma (S) é no máximo 3000, caso onde todos os pesos são 1000, Δx=Δy=1, Vx=1 ou Vy=1.
+
+Por fim, S é dividido por 3000, para que a saída no neurônio seja normalizada em um valor que fica sempre entre -1 e +1.
+
+Esse processo se repete entre a camada oculta e a de saída.
+
+#### 4.1.3 Output
+
+No final, o output de cada neurônio de saída é um numéro entre 0 e 1, pois pego apenas o valor absoluto do resultado da normalização.
+
+Assim, a cobra segue para a direção que retornou o maior valor absoluto de saída na rede.
+
 ### 4.2 - Treinamento (algoritmo genético)
+
+O treinamento da rede serve para refinar o valor dos seus pesos.
+
+Como foi dito antes, ao criar uma rede nova, todos os pesos são inicializados aleatoriamente.
+
+Como o conjunto dos pesos acaba por definir o comportamento da rede, precisamos de alguma forma ajustar cada valor para que a rede produza saídas que levem a cobra a performar bem no jogo.
+
+Existem várias formas de fazer isso, mas aqui irei utilizar um algoritmo genético bem intuitivo para isso.
+
+- (1) Vamos começar criando uma população de cobras, cada uma com seus próprios pesos aleatórios
+- (2) Cada cobra vai ser colocada pra jogar separadamente
+- (3) Ao final de todos os jogos, vamos analisar o desempenho de cada cobra
+- (4) 20% das cobras que tiverem a maior pontuação no jogo, seguida pelo menor número de movimentos, serão selecionadas para jogarem novamente
+- (5) As próximas 20% do hanking serão cruzadas com as 20% anteriores, gerando novas cobras
+- (6) As demais serão descartadas, ou melhor, substituídas por novas cobras com pesos aleatórios
 
 <p align="center">
   <img src="./Docs/nn_train.gif" width="900" style="display: block; margin: 0 auto" />
 </p>
 
-
-
-
-
+Ao final do treinamento, a melhor rede será selecionada para competir contra os demais players.
 
 ## 5 - Star
+
+
+
+
 
 ### 5.1 - Limitando os caminhos possíveis
 
