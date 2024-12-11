@@ -148,28 +148,47 @@ Ao final do treinamento, a melhor rede será selecionada para competir contra os
 
 ## 5 - Star
 
+A parte mais difícil desse jogo é quando a cobra ocupa mais da metade do tabuleiro. A partir daí as chances de se prender no próprio corpo e perder o jogo só aumentam.
 
-
-
+Para lidar com isso, o algoritmo a seguir se baseia em duas coisas:
+- Limitar as direções de movimento da cobra em cada posição (pattern)
+- Buscar o menor caminho até a comida, respeitando o limite anterior (A*)
 
 ### 5.1 - Limitando os caminhos possíveis
 
+Aqui repetimos o padrão a seguir por todo o tabuleiro.
+
+Dessa forma, basta que a cobra respeite esses limites para que jamais fique sem saída e acabe perdendo o jogo.
+
 <p align="center">
-  <img src="./Docs/pattern.gif" width="900" style="display: block; margin: 0 auto" />
+  <img src="./Docs/pattern_astar.gif" width="900" style="display: block; margin: 0 auto" />
 </p>
 
 ### 5.2 - A* Pathfinder
 
-- Ideia + visualização 
+Aqui utilizamos o algoritmo pathfinder A* para definir qual o menor caminho da cabeça da cobra até a comida.
 
+Caso não seja possível chegar até a comida, busca-se o menor caminho até a calda da cobra.
 
-
-
-
+<p align="center">
+  <img src="./Docs/path_draw.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
 
 ## 6 - Versão mais simples do jogo
 
-- GIF dela
+Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar com uma versão mais simples do jogo, onde a cobra não cresce ao pegar a comida.
+
+É esperado que todos os algoritmos se saiam bem nessa versão, pois é impossível perder o jogo por colisão com o próprio corpo.
+
+<p align="center">
+  <img src="./Docs/simple_game.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
+
+
+
+
+
+
 
 - Dummy
 - Neural (treino)

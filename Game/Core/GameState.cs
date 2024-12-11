@@ -13,12 +13,16 @@ public class GameState
     public bool GameOver { get; private set; }
     public bool Zerou { get; private set; }
 
-	public GameState(int rows, int columns)
+    public GameMode Mode { get; private set; }
+
+	public GameState(int rows, int columns, GameMode mode)
     {
         Rows = rows;
         Columns = columns;
         Grid = new Grid(rows, columns);
         Snake = new Snake();
+
+        Mode = mode;
 
         AddSnake();
         Grid.AddFood();
@@ -27,16 +31,17 @@ public class GameState
     private void AddSnake()
     {
         int middleRow = Rows / 2;
-        for (int column = 2; column >= 1; column--)
+
+        for (int column = 2; column >= 0; column--)
         {
-            Grid.PutSnake(middleRow, column);
+            Grid.PutSnakeBody(middleRow, column);
             Snake.Append(middleRow, column);
         }
     }
 
     private void MoveSnakeHead(Position position)
     {
-        Grid.PutSnake(position);
+        Grid.PutSnakeBody(position);
         Snake.MoveTo(position);
     }
 
@@ -69,6 +74,10 @@ public class GameState
 
         if (targetCell == CellType.Food)
         {
+            if (Mode == GameMode.FixedSize)
+            {
+                RemoveSnakeTail();
+            }
             MoveSnakeHead(newHeadPosition);
             Score++;
             Zerou = Grid.AddFood() == 0;
@@ -79,7 +88,7 @@ public class GameState
     {
         if (Grid.IsOutside(newHeadPosition)) return CellType.Outside;
 
-        if (newHeadPosition == Snake.GetTailPosition()) return CellType.Empty;
+        if (newHeadPosition == Snake.GetTailPosition()) return CellType.SnakeTail;
 
         return Grid.GetCellAt(newHeadPosition);
     }

@@ -18,11 +18,13 @@ public partial class MainWindow
     private GameState _game;
     private PlayerMode _playerMode = PlayerMode.Human;
 
+    private readonly GameMode _mode = GameMode.FixedSize;
+
 	public MainWindow()
     {
         InitializeComponent();
         _gridImages = SetupGridImages();
-        _game = new GameState(_rows, _columns);
+        _game = new GameState(_rows, _columns, _mode);
     }
 
 	private Image[,] SetupGridImages()
@@ -65,7 +67,7 @@ public partial class MainWindow
         {
 	        await DrawZerou();
         }
-		_game = new GameState(_rows, _columns);
+		_game = new GameState(_rows, _columns, _mode);
 	}
 
     private async Task GameLoop()
@@ -85,7 +87,7 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(100);
+			    await Task.Delay(40);
 				DummyPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();
@@ -96,7 +98,7 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(80);
+			    await Task.Delay(150);
 				var path = StarPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();

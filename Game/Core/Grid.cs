@@ -38,11 +38,11 @@ public class Grid
         Put(position.Row, position.Column, cellType);
     }
 
-    public void PutSnake(Position position)
+    public void PutSnakeBody(Position position)
     {
         Put(position, CellType.SnakeBody);
     }
-    public void PutSnake(int row, int column)
+    public void PutSnakeBody(int row, int column)
     {
         Put(row, column, CellType.SnakeBody);
     }
