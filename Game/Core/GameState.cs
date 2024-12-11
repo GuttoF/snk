@@ -65,7 +65,7 @@ public class GameState
             return;
         }
 
-        if (targetCell == CellType.Empty)
+        if (targetCell is CellType.Empty or CellType.SnakeTail)
         {
             RemoveSnakeTail();
             MoveSnakeHead(newHeadPosition);

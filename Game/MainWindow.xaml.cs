@@ -1,8 +1,8 @@
 ﻿using Game.UI;
 using Game.Core;
 using System.Windows;
-using Game.Players.Dummy;
 using Game.Players.Star;
+using Game.Players.Dummy;
 using Game.Players.Neural;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -18,7 +18,7 @@ public partial class MainWindow
     private GameState _game;
     private PlayerMode _playerMode = PlayerMode.Human;
 
-    private readonly GameMode _mode = GameMode.FixedSize;
+    private readonly GameMode _mode = GameMode.Classic;
 
 	public MainWindow()
     {
@@ -87,7 +87,7 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(40);
+			    await Task.Delay(130);
 				DummyPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();

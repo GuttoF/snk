@@ -7,12 +7,24 @@ Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*
 Nesse projeto vamos responder todas essas perguntas!
 
 <p align="center">
-  <img src="./Docs/00_dummy_player.gif" width="600" style="border-radius: 10px; display: block; margin: auto auto" />
+  <img src="./Docs/01_dummy_classic.gif" width="600" style="border-radius: 10px; display: block; margin: auto auto" />
 </p>
 
 ## 1 - Implementação do jogo
 
 Acabei fazendo tudo em C#, por ser a linguagem que mais domino. Pra UI usei WPF, então infelizmente só vai rodar no Windows.
+
+Também implementei duas versões do jogo:
+- Uma mais simples, onde a cobra não aumenta de tamanho ao pegar a comida.
+- A versão clássica, onde a cobra aumenta uma unidade a cada comida coletada.
+
+
+
+<p align="center">
+  <img src="./Docs/00_dummy_fixed_size.gif" width="500" style="border-radius: 10px; margin-right: 30px;" />
+  <img src="./Docs/01_dummy_classic.gif" width="500" style="border-radius: 10px; margin-left: 30px;" />
+</p>
+
 
 Organizei o projeto em 3 partes:
 - **Core**: aqui fica o estado do jogo, juntamente com suas regras
