@@ -21,8 +21,8 @@ Também implementei duas versões do jogo:
 
 
 <p align="center">
-  <img src="./Docs/00_dummy_fixed_size.gif" width="500" style="border-radius: 10px; margin-right: 30px;" />
-  <img src="./Docs/01_dummy_classic.gif" width="500" style="border-radius: 10px; margin-left: 30px;" />
+  <img src="./Docs/00_dummy_fixed_size.gif" width="500" style="border-radius: 10px;" />
+  <img src="./Docs/01_dummy_classic.gif" width="500" style="border-radius: 10px;" />
 </p>
 
 
