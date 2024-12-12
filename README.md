@@ -203,7 +203,7 @@ A seguir podemos ver isso tudo funcionando:
   <img src="./Docs/05_star_spoiler.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
-## 6 - Versão mais simples do jogo
+## 6 - Versão mais simples
 
 Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar com a versão mais simples do jogo, onde a cobra não cresce ao pegar a comida.
 
@@ -215,56 +215,26 @@ Coloquei esse monte de if/else pra jogar 1000 partidas e ele ganhou em todas!
 
 Veja que a quantidade de movimentos varia devido à aleatoriedade do jogo, pois a comida pode aparecer em qualquer lugar vazio do tabuleiro.
 
-A média de movimentos ficou em cerca de 680.
+A média de movimentos ficou em cerca de ????.
 
-<p align="center">
-  <img src="./Docs/dummy_stats.png" height="500" style="display: block; margin: 0 auto" />
-</p>
+### 6.2 Neural
 
+Treino + Desempenho
 
-- Dummy
-- Neural (treino)
-- Star
+### 6.3 Star
 
-## 7 - Versão completa
+Desempenho
 
-- GIF dela
+## 7 - Versão clássica
 
-- Dummy
-- Neural (treino)
-- Star
+### 7.1 Dummy
 
+Desempenho
 
+### 7.2 Neural
 
+Treino + Desempenho
 
+### 7.3 Star
 
-
-
-
-### Simple version
-<img src="./Docs/simple.png" width="900" style="display: block; margin: 0 auto" />
-<br>
-<video src="./Docs/best_simple_snake.mp4" width="800" style="display: block; margin: 0 auto" controls></video>
-
-### Complete version
-<img src="./Docs/complete.png" width="900" style="display: block; margin: 0 auto" />
-<br>
-<video src="./Docs/best_complete_snake.mp4" width="800" style="display: block; margin: 0 auto" controls></video>
-
-
-## Pathfindings
-
-- https://youtu.be/mZfyt03LDH4
-- https://youtu.be/2JNEme00ZFA
-- https://youtu.be/MenMqx9pumw
-
-## TODOS
-
-- Portais (por tempo limitado)
-- Obstaculos (clicar e adicionar)
-- Comida que se mexe (mais devagar?)
-- Comidas que valem tamanhos maiores que um
-- Representar cobra como gradiente de cor ficando mais claro
-- Analisar se eh possível mudar a horientação das setas no meio do jogo
-
-Zerando => https://youtu.be/Vii9XiQ8bec
+Desempenho
