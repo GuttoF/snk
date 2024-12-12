@@ -20,7 +20,7 @@ public static class DummyPlayerRunner
         var games = new List<GameState>();
         for (int i = 0; i < size; i++)
         {
-            games.Add(new GameState(10, 10, GameMode.FixedSize));
+            games.Add(new GameState(10, 10, GameMode.Classic));
         }
 
         Parallel.ForEach(games, game =>

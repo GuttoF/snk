@@ -8,6 +8,6 @@ public static class Program
     public static void Main(string[] args)
     {
         // DummyPlayerRunner.Run();
-        StarPlayerRunner.Run();
+        DummyPlayerRunner.Run();
     }
 }

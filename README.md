@@ -271,29 +271,38 @@ Segue o GIF de uma das partidas completa:
   <img src="./Docs/15_star_simple.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 7 - Versão clássica
+
+Finalmente vamos realizar a disputa na versão clássica do jogo.
+
+
+
+
 
 ### 7.1 Dummy
 
-Desempenho
+Ela só conseguiu pegar em média 19 comidas, ou seja, só conseguiu ocupar 1/5 do tabuleiro.
+
+<p align="center">
+  <img src="./Docs/dummy_classic.png" style="display: block; margin: 0 auto" />
+</p>
+
+Segue o GIF de duas partidas completas:
+
+<p align="center">
+  <img src="./Docs/19_dummy_classic.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
+
+
+
+
+
+
+
+
+
+
+
 
 ### 7.2 Neural
 
@@ -304,3 +313,16 @@ Perceba que a cobra aprendeu a seguir um padrão de movimento circular, o que di
 ### 7.3 Star
 
 Desempenho
+
+
+
+
+
+
+
+
+## 8 - Tabuleiros maiores
+
+Star nos
+
+

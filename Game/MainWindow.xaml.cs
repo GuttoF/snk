@@ -18,7 +18,7 @@ public partial class MainWindow
     private GameState _game;
     private PlayerMode _playerMode = PlayerMode.Human;
 
-    private readonly GameMode _mode = GameMode.FixedSize;
+    private readonly GameMode _mode = GameMode.Classic;
 
 	public MainWindow()
     {
