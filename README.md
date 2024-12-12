@@ -215,15 +215,51 @@ Coloquei esse monte de if/else pra jogar 1000 partidas e ele ganhou em todas!
 
 Veja que a quantidade de movimentos varia devido à aleatoriedade do jogo, pois a comida pode aparecer em qualquer lugar vazio do tabuleiro.
 
-A média de movimentos ficou em cerca de ????.
+A média de movimentos ficou em 678.
+
+<p align="center">
+  <img src="./Docs/07_dummy_simple_stats.png" style="display: block; margin: 0 auto" />
+</p>
+
+Segue uma das partidas:
+
+<p align="center">
+  <img src="./Docs/06_dummy_simple.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
 
 ### 6.2 Neural
+
+Foram 50.000 cobras, jogando por 1000 gerações, totalizando 50.000.000 de partidas.
+
+A cobra rapidamente aprendeu a perseguir a comida. Em seguida, as que conseguiam zerar com o menor número de passos foram selecionadas.
+
+No final foi obtida a cobra com o melhor desempenho, ou seja, que atinge a pontuação máxima utilizando um número de movimentos mínimo.
+
 
 Treino + Desempenho
 
 ### 6.3 Star
 
 Desempenho
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 7 - Versão clássica
 
@@ -234,6 +270,8 @@ Desempenho
 ### 7.2 Neural
 
 Treino + Desempenho
+
+Perceba que a cobra aprendeu a seguir um padrão de movimento circular, o que diminui as chances de colisão. 
 
 ### 7.3 Star
 

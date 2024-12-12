@@ -18,7 +18,7 @@ public partial class MainWindow
     private GameState _game;
     private PlayerMode _playerMode = PlayerMode.Human;
 
-    private readonly GameMode _mode = GameMode.Classic;
+    private readonly GameMode _mode = GameMode.FixedSize;
 
 	public MainWindow()
     {
@@ -87,7 +87,7 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(130);
+			    await Task.Delay(60);
 				DummyPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();
