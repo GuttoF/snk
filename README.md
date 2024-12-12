@@ -255,14 +255,21 @@ Segue o GIF de uma das partidas completa:
   <img src="./Docs/09_neural_simple.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
-
-
-
-
 ### 6.3 Star
 
-Desempenho
+Coloquei o Star pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
 
+A média de movimentos ficou em 765. A quantidade mínima foi 631 e a máxima 901 movimentos.
+
+<p align="center">
+  <img src="./Docs/star_simple.png" style="display: block; margin: 0 auto" />
+</p>
+
+Segue o GIF de uma das partidas completa:
+
+<p align="center">
+  <img src="./Docs/15_star_simple.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
 
 
 
