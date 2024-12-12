@@ -275,10 +275,6 @@ Segue o GIF de uma das partidas completa:
 
 Finalmente vamos realizar a disputa na versão clássica do jogo.
 
-
-
-
-
 ### 7.1 Dummy
 
 Ela só conseguiu pegar em média 19 comidas, ou seja, só conseguiu ocupar 1/5 do tabuleiro.
@@ -293,36 +289,77 @@ Segue o GIF de duas partidas completas:
   <img src="./Docs/19_dummy_classic.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
-
-
-
-
-
-
-
-
-
-
-
 ### 7.2 Neural
 
-Treino + Desempenho
+O treinamento foi feito com 10.000 cobras, jogando por 1000 gerações, totalizando 10.000.000 de partidas.
 
-Perceba que a cobra aprendeu a seguir um padrão de movimento circular, o que diminui as chances de colisão. 
+Perceba que a cobra aprendeu a seguir um padrão de movimento circular, o que diminui as chances de colisão.
+
+Durante o treinamento, algumas cobras conseguiram pontuações muito altas (uma conseguiu até zerar), mas em média elas elas conseguem ocupar apenas metade do tabuleiro.
+
+Esse comportamento de altas pontuações apenas durante o treinamento se deve à aleatoriedade do jogo: provavelmente as comidas foram aparecendo perto da cobra, evitando que ela colidisse consigo mesma.
+
+<p align="center">
+  <img src="./Docs/neural_classic.png" style="display: block; margin: 0 auto" />
+</p>
+
+Coloquei ela pra jogar 1000 partidas e ela não conseguiu ganhar nenhuma.
+
+A média de movimentos ficou em aaa. A quantidade mínima foi aaa e a máxima aaa movimentos.
+
+<p align="center">
+  <img src="./Docs/neural_classic_game.png" style="display: block; margin: 0 auto" />
+</p>
+
+Segue o GIF de uma das partidas completa:
+
+<p align="center">
+  <img src="./Docs/??" width="600" style="display: block; margin: 0 auto" />
+</p>
 
 ### 7.3 Star
 
-Desempenho
+Coloquei o Star pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
 
+A média de movimentos ficou em xxx. A quantidade mínima foi xxx e a máxima xxx movimentos.
 
+Para ter mais confiança que esse algoritmo sempre ganha, realizei mais 1.000.000 de jogos, e ele GANHOU TODOS.
 
+<p align="center">
+  <img src="./Docs/???" style="display: block; margin: 0 auto" />
+</p>
 
+Segue o GIF de uma das partidas completa:
 
-
-
+<p align="center">
+  <img src="./Docs/???" width="600" style="display: block; margin: 0 auto" />
+</p>
 
 ## 8 - Tabuleiros maiores
 
-Star nos
+Coloquei o Star para jogar em tabuleiros maiores, para ver como se comporta quando o problema escala.
 
+| Size    | Score | Steps | Time     |
+|---------|-------|-------|----------|
+| 10x10   |       |       | 60 s     |
+| 20x20   |       |       |          |
+| 50x50   |       |       |          |
+| 100x100 |       |       |          |
 
+GIF do 50x50:
+
+## 9 - Veredito
+
+Na versão mais simples, o Dummy acabou tendo o melhor desempenho, seguido pelo Star e por fim o Neural.
+
+Já na versão clássica, o Star foi perfeito, ganhando simplesmente todos os jogos que disputou. Dummy e Neural ficaram tecnicamente empatados.
+
+## 10 - Referências
+
+### Victor Dias, do canal Universo Programado
+
+Ele fez uma série com 3 vídeos no canal com diversos algoritmos e técnicas para zerar o snake game.
+
+No último vídeo ele apresenta essa sacada usada no player Star, onde basta limitar o padrão de movimento da cobra em cada posição para que ela nunca colida consigo mesma.
+
+Segue o vídeo: https://youtu.be/Vii9XiQ8bec

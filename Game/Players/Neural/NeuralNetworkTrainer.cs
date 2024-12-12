@@ -10,9 +10,9 @@ public static class NeuralNetworkTrainer
     public static void Run()
     {
         const int epochs = 1000;
-        const int populationSize = 5_000;
+        const int populationSize = 10_000;
 
-        const GameMode gameMode = GameMode.FixedSize;
+        const GameMode gameMode = GameMode.Classic;
 
         var timer = new Stopwatch();
         timer.Start();
@@ -31,7 +31,7 @@ public static class NeuralNetworkTrainer
             // Botar pra jogar
             Parallel.ForEach(games, game =>
             {
-                while (!game.GameOver & !game.Zerou & game.Steps < 1200)
+                while (!game.GameOver & !game.Zerou & game.Steps < 2500)
                 {
                     if (game.Steps > 500 & game.Score < 10) break;
                     NeuralPlayer.Decide(game.GetData(), game.SnakeGoTo, game.NeuralNetwork);
