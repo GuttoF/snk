@@ -7,7 +7,7 @@ Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*
 Nesse projeto vamos responder todas essas perguntas!
 
 <p align="center">
-  <img src="./Docs/01_dummy_classic.gif" width="600" style="border-radius: 10px; display: block; margin: auto auto" />
+  <img src="./Docs/01_dummy_classic.gif" width="500" style="border-radius: 10px; display: block; margin: auto auto" />
 </p>
 
 ## 1 - Implementação do jogo
@@ -18,13 +18,12 @@ Também implementei duas versões do jogo:
 - Uma mais simples, onde a cobra não aumenta de tamanho ao pegar a comida.
 - A versão clássica, onde a cobra aumenta uma unidade a cada comida coletada.
 
-
+Pensar em uma versão mais simples do problema geralmente ajuda no entendimento e na solução do problema original.
 
 <p align="center">
   <img src="./Docs/00_dummy_fixed_size.gif" width="500" style="border-radius: 10px;" />
   <img src="./Docs/01_dummy_classic.gif" width="500" style="border-radius: 10px;" />
 </p>
-
 
 Organizei o projeto em 3 partes:
 - **Core**: aqui fica o estado do jogo, juntamente com suas regras
@@ -127,7 +126,7 @@ Perceba que o valor dessa soma (S) é no máximo 3000, caso onde todos os pesos 
 
 Por fim, S é dividido por 3000, para que a saída no neurônio seja normalizada em um valor que fica sempre entre -1 e +1.
 
-Esse processo se repete entre a camada oculta e a de saída.
+Esse processo se repete entre a camada oculta e a de saída, só que agora dividindo por 8000.
 
 #### 4.1.3 Output
 
@@ -143,14 +142,18 @@ Como foi dito antes, ao criar uma rede nova, todos os pesos são inicializados a
 
 Como o conjunto dos pesos acaba por definir o comportamento da rede, precisamos de alguma forma ajustar cada valor para que a rede produza saídas que levem a cobra a performar bem no jogo.
 
-Existem várias formas de fazer isso, mas aqui irei utilizar um algoritmo genético bem intuitivo para isso.
+Existem várias formas de fazer isso, mas aqui irei utilizar um algoritmo genético bem intuitivo:
 
-- (1) Vamos começar criando uma população de cobras, cada uma com seus próprios pesos aleatórios
-- (2) Cada cobra vai ser colocada pra jogar separadamente
-- (3) Ao final de todos os jogos, vamos analisar o desempenho de cada cobra
-- (4) 20% das cobras que tiverem a maior pontuação no jogo, seguida pelo menor número de movimentos, serão selecionadas para jogarem novamente
-- (5) As próximas 20% do hanking serão cruzadas com as 20% anteriores, gerando novas cobras
-- (6) As demais serão descartadas, ou melhor, substituídas por novas cobras com pesos aleatórios
+- 0️⃣ O processo a seguir será repetido por 1000 gerações
+- 1️⃣ Vamos criar uma população de cobras, cada uma com seus próprios pesos aleatórios
+- 2️⃣ Cada cobra vai ser colocada pra jogar separadamente
+- 3️⃣ Ao final de todos os jogos, vamos analisar o desempenho de cada cobra
+- 4️⃣ Um hanking será montado, ordenando as cobras com maior pontuação e em seguida com o menor número de movimentos realizados
+- 5️⃣ As top 20% das cobras serão selecionadas para jogarem na próxima geração
+- 6️⃣ As próximas 20% do hanking serão cruzadas com as 20% anteriores, gerando novas cobras com relativo potencial no jogo
+- 7️⃣ As demais serão descartadas, ou melhor, substituídas por novas cobras com pesos aleatórios
+
+Para evitar que uma cobra fique andando em círculos e o jogo nunca termine, defini um limite de passos que podem ser realizados antes do jogo acabar.
 
 <p align="center">
   <img src="./Docs/nn_train.gif" width="900" style="display: block; margin: 0 auto" />
