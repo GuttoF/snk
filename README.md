@@ -18,6 +18,8 @@ Também implementei duas versões do jogo:
 - Uma mais simples, onde a cobra não aumenta de tamanho ao pegar a comida.
 - A versão clássica, onde a cobra aumenta uma unidade a cada comida coletada.
 
+Independente da versão, é preciso atingir uma pontuação de 97 pontos para ganhar. Afinal, é um tabuleiro 10x10 e a cobra inicia com tamanho 3.
+
 Pensar em uma versão mais simples do problema geralmente ajuda no entendimento e na solução do problema original.
 
 <p align="center">
@@ -144,8 +146,9 @@ Como o conjunto dos pesos acaba por definir o comportamento da rede, precisamos 
 
 Existem várias formas de fazer isso, mas aqui irei utilizar um algoritmo genético bem intuitivo:
 
-- 0️⃣ O processo a seguir será repetido por 1000 gerações
-- 1️⃣ Vamos criar uma população de cobras, cada uma com seus próprios pesos aleatórios
+⚠️ O processo a seguir será repetido por 1000 gerações ⚠️
+
+- 1️⃣ Vamos criar uma população de 50.000 cobras, cada uma com seus próprios pesos aleatórios
 - 2️⃣ Cada cobra vai ser colocada pra jogar separadamente
 - 3️⃣ Ao final de todos os jogos, vamos analisar o desempenho de cada cobra
 - 4️⃣ Um hanking será montado, ordenando as cobras com maior pontuação e em seguida com o menor número de movimentos realizados
@@ -159,19 +162,25 @@ Para evitar que uma cobra fique andando em círculos e o jogo nunca termine, def
   <img src="./Docs/nn_train.gif" width="900" style="display: block; margin: 0 auto" />
 </p>
 
-Ao final do treinamento, a melhor rede será selecionada para competir contra os demais players.
+Ao final do treinamento, a melhor cobra (rede neural) será selecionada para competir contra os demais players. Ela pode ser representada pelos pesos que ligam seus neurônios e definem o comportamento da cobra no jogo.
+
+Assim, todo treinamento é feito com o objetivo de chegar em duas matrizes de pesos refinados, como as mostradas a seguir:
+
+<p align="center">
+  <img src="./Docs/nn_weights.png" width="400" style="display: block; margin: 0 auto" />
+</p>
 
 ## 5 - Star
 
 A parte mais difícil desse jogo é quando a cobra ocupa mais da metade do tabuleiro. A partir daí as chances de se prender no próprio corpo e perder o jogo só aumentam.
 
 Para lidar com isso, o algoritmo a seguir se baseia em duas coisas:
-- Limitar as direções de movimento da cobra em cada posição (pattern)
-- Buscar o menor caminho até a comida, respeitando o limite anterior (A*)
+- Limitar as direções de movimento da cobra em cada posição (seguindo um padrão bem definido)
+- Buscar o menor caminho até a comida, respeitando o limite anterior (usando o algoritmo A*)
 
 ### 5.1 - Limitando os caminhos possíveis
 
-Aqui repetimos o padrão a seguir por todo o tabuleiro.
+Para limitar as direções possíveis de movimento da cobra em cada posição, repetimos o padrão a seguir por todo o tabuleiro.
 
 Dessa forma, basta que a cobra respeite esses limites para que jamais fique sem saída e acabe perdendo o jogo.
 
@@ -183,26 +192,34 @@ Dessa forma, basta que a cobra respeite esses limites para que jamais fique sem 
 
 Aqui utilizamos o algoritmo pathfinder A* para definir qual o menor caminho da cabeça da cobra até a comida.
 
-Caso não seja possível chegar até a comida, busca-se o menor caminho até a calda da cobra.
+Caso não seja possível chegar até a comida, busca-se o menor caminho até a calda da cobra. Dessa forma, em algum momento a cobra vai chegar numa posição na qual é possível acessar a comida novamente.
+
+A seguir podemos ver isso tudo funcionando:
+- A cobra sempre se move respeitando as setas (limites de direção)
+- Antes de cada movimento, ela calcula o menor caminho até a comida
+- Os pontinhos amarelos no GIF representam o caminho calculado
 
 <p align="center">
-  <img src="./Docs/path_draw.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/05_star_spoiler.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ## 6 - Versão mais simples do jogo
 
-Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar com uma versão mais simples do jogo, onde a cobra não cresce ao pegar a comida.
+Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar com a versão mais simples do jogo, onde a cobra não cresce ao pegar a comida.
 
 É esperado que todos os algoritmos se saiam bem nessa versão, pois é impossível perder o jogo por colisão com o próprio corpo.
 
+### 6.1 Dummy
+
+Coloquei esse monte de if/else pra jogar 1000 partidas e ele ganhou em todas!
+
+Veja que a quantidade de movimentos varia devido à aleatoriedade do jogo, pois a comida pode aparecer em qualquer lugar vazio do tabuleiro.
+
+A média de movimentos ficou em cerca de 680.
+
 <p align="center">
-  <img src="./Docs/simple_game.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/dummy_stats.png" height="500" style="display: block; margin: 0 auto" />
 </p>
-
-
-
-
-
 
 
 - Dummy
