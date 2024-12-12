@@ -211,17 +211,17 @@ Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar co
 
 ### 6.1 Dummy
 
-Coloquei esse monte de if/else pra jogar 1000 partidas e ele ganhou em todas!
+Coloquei esse monte de if/else pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
 
 Veja que a quantidade de movimentos varia devido à aleatoriedade do jogo, pois a comida pode aparecer em qualquer lugar vazio do tabuleiro.
 
-A média de movimentos ficou em 678.
+A média de movimentos ficou em 678. A quantidade mínima foi 581 e a máxima 812 movimentos.
 
 <p align="center">
-  <img src="./Docs/07_dummy_simple_stats.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/dummy_simple.png" style="display: block; margin: 0 auto" />
 </p>
 
-Segue uma das partidas:
+Segue o GIF de uma das partidas completa:
 
 <p align="center">
   <img src="./Docs/06_dummy_simple.gif" width="600" style="display: block; margin: 0 auto" />
@@ -229,14 +229,35 @@ Segue uma das partidas:
 
 ### 6.2 Neural
 
-Foram 50.000 cobras, jogando por 1000 gerações, totalizando 50.000.000 de partidas.
+O treinamento foi feito com 5000 cobras, jogando por 1000 gerações, totalizando 5.000.000 de partidas.
 
-A cobra rapidamente aprendeu a perseguir a comida. Em seguida, as que conseguiam zerar com o menor número de passos foram selecionadas.
+As cobras rapidamente aprenderam a perseguir a comida, pois desde a primeira geração já surgiu pelo menos uma que ganhou o jogo.
 
-No final foi obtida a cobra com o melhor desempenho, ou seja, que atinge a pontuação máxima utilizando um número de movimentos mínimo.
+A partir daí, as cobras que conseguiam zerar com o menor número de movimentos foram sendo selecionadas e passadas para próxima geração.
+
+<p align="center">
+  <img src="./Docs/neural_simple_train.png" style="display: block; margin: 0 auto" />
+</p>
+
+No final foi obtida a cobra com o melhor desempenho, ou seja, que atinge a pontuação máxima utilizando o menor número de movimentos.
+
+Coloquei ela pra jogar 1000 partidas e ela ganhou (atingiu 97 pontos) em todas!
+
+A média de movimentos ficou em 958. A quantidade mínima foi 817 e a máxima 1099 movimentos.
+
+<p align="center">
+  <img src="./Docs/neural_simple.png" style="display: block; margin: 0 auto" />
+</p>
+
+Segue o GIF de uma das partidas completa:
+
+<p align="center">
+  <img src="./Docs/09_neural_simple.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
 
 
-Treino + Desempenho
+
+
 
 ### 6.3 Star
 

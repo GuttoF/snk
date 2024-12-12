@@ -1,99 +1,102 @@
-// using System.IO;
-// using System.Text.Json;
-// using System.Diagnostics;
+using System.IO;
+using Game.Core;
+using System.Text.Json;
+using System.Diagnostics;
 
-// namespace Game.Players.Neural;
+namespace Game.Players.Neural;
 
-// public static class NeuralNetworkTrainer
-// {
-//    public static void Run()
-//    {
-//       const int epochs = 1000;
-//       const int populationSize = 50_000;
+public static class NeuralNetworkTrainer
+{
+    public static void Run()
+    {
+        const int epochs = 1000;
+        const int populationSize = 5_000;
 
-//       var timer = new Stopwatch();
-//       timer.Start();
+        const GameMode gameMode = GameMode.FixedSize;
 
-//       var scores = new List<int>();
-//       var steps = new List<int>();
+        var timer = new Stopwatch();
+        timer.Start();
 
-//       var games = new List<GameState>();
-//       for (int i = 0; i < populationSize; i++)
-//       {
-//          games.Add(new GameState(10, 10));
-//       }
+        var scores = new List<int>();
+        var steps = new List<int>();
 
-//       for (int epoch = 0; epoch < epochs; epoch++)
-//       {
-//          // Botar pra jogar
-//          Parallel.ForEach(games, game =>
-//          {
-//             while (!game.GameOver & !game.Zerou & game.Steps < 2_500)
-//             {
-//                if (game.Steps > 500 & game.Score < 10) break;
-//                game.NeuralNetworkDecision();
-//                game.MoveSnake();
-//             }
-//             game.NeuralNetwork.Score = game.Score;
-//             game.NeuralNetwork.Steps = game.Steps;
-//          });
+        var games = new List<GameStateNN>();
+        for (int i = 0; i < populationSize; i++)
+        {
+            games.Add(new GameStateNN(10, 10, gameMode));
+        }
 
-//          // Ordenar redes segundo o score de cada uma
-//          // Pras de mesmo score, ordenar as que precisaram de menos steps
-//          var bests = games.OrderByDescending(x => x.Score).ThenBy(x => x.Steps).Select(x => x.NeuralNetwork).ToList();
-//          var slice1 = bests.TakePercent(20);
-//          var slice2 = bests.Skip(slice1.Count).ToList().TakePercent(40);
+        for (int epoch = 0; epoch < epochs; epoch++)
+        {
+            // Botar pra jogar
+            Parallel.ForEach(games, game =>
+            {
+                while (!game.GameOver & !game.Zerou & game.Steps < 1200)
+                {
+                    if (game.Steps > 500 & game.Score < 10) break;
+                    NeuralPlayer.Decide(game.GetData(), game.SnakeGoTo, game.NeuralNetwork);
+                    game.MoveSnake();
+                }
+                game.NeuralNetwork.Score = game.Score;
+                game.NeuralNetwork.Steps = game.Steps;
+            });
 
-//          Console.WriteLine($"{epoch} | {bests.First().Score} | {bests.First().Steps}");
-//          scores.Add(bests.First().Score);
-//          steps.Add(bests.First().Steps);
+            // Ordenar redes segundo o score de cada uma
+            // Pras de mesmo score, ordenar as que precisaram de menos steps
+            var bests = games.OrderByDescending(x => x.Score).ThenBy(x => x.Steps).Select(x => x.NeuralNetwork).ToList();
+            var slice1 = bests.TakePercent(20);
+            var slice2 = bests.Skip(slice1.Count).ToList().TakePercent(40);
 
-//          // Montar nova lista de redes
-//          var newNetworks = new List<NeuralNetwork>();
+            Console.WriteLine($"{epoch} | {bests.First().Score} | {bests.First().Steps}");
+            scores.Add(bests.First().Score);
+            steps.Add(bests.First().Steps);
 
-//          // - As 20% melhores passam pra nova
-//          newNetworks.AddRange(slice1);
+            // Montar nova lista de redes
+            var newNetworks = new List<NeuralNetwork>();
 
-//          // - 40% das melhores restantes são cruzadas com as 20% melhores
-//          for (int i = 0; i < slice1.Count; i++)
-//          {
-//             var a = slice1.OrderBy(x => Guid.NewGuid()).First();
-//             var b = slice2.OrderBy(x => Guid.NewGuid()).First();
-//             newNetworks.Add(SnakExtensions.Merge(a, b));
-//          }
+            // - As 20% melhores passam pra nova
+            newNetworks.AddRange(slice1);
 
-//          // - A lista é completada novamente com redes random
-//          var missing = populationSize - newNetworks.Count;
-//          for (int i = 0; i < missing; i++)
-//          {
-//             newNetworks.Add(NeuralNetwork.NewRandom(8));
-//          }
+            // - 40% das melhores restantes são cruzadas com as 20% melhores
+            for (int i = 0; i < slice1.Count; i++)
+            {
+                var a = slice1.OrderBy(x => Guid.NewGuid()).First();
+                var b = slice2.OrderBy(x => Guid.NewGuid()).First();
+                newNetworks.Add(NeuralExtensions.Merge(a, b));
+            }
 
-//          games = [];
-//          foreach (var net in newNetworks)
-//          {
-//             games.Add(new GameState(10, 10) { NeuralNetwork = net });
-//          }
-//       }
+            // - A lista é completada novamente com redes random
+            var missing = populationSize - newNetworks.Count;
+            for (int i = 0; i < missing; i++)
+            {
+                newNetworks.Add(NeuralNetwork.NewRandom(8));
+            }
 
-//       timer.Stop();
+            games = [];
+            foreach (var net in newNetworks)
+            {
+                games.Add(new GameStateNN(10, 10, gameMode) { NeuralNetwork = net });
+            }
+        }
 
-//       Console.WriteLine(JsonSerializer.Serialize(scores));
-//       Console.WriteLine(JsonSerializer.Serialize(steps));
+        timer.Stop();
 
-//       TimeSpan timeTaken = timer.Elapsed;
-//       Console.WriteLine(">>>>> Duration: " + timeTaken.ToString(@"mm\:ss"));
+        Console.WriteLine(JsonSerializer.Serialize(scores));
+        Console.WriteLine(JsonSerializer.Serialize(steps));
 
-//       var best = games.Select(x => x.NeuralNetwork).OrderByDescending(x => x.Score).ThenBy(x => x.Steps).First();
-//       string jsonString = JsonSerializer.Serialize(best);
-//       Console.WriteLine(jsonString);
+        TimeSpan timeTaken = timer.Elapsed;
+        Console.WriteLine(">>>>> Duration: " + timeTaken.ToString(@"mm\:ss"));
 
-//       string myfile = @"result.txt";
-//       using StreamWriter sw = File.CreateText(myfile);
-//       sw.WriteLine(JsonSerializer.Serialize(scores));
-//       sw.WriteLine("---------");
-//       sw.WriteLine(JsonSerializer.Serialize(steps));
-//       sw.WriteLine("---------");
-//       sw.WriteLine(jsonString);
-//    }
-// }
+        var best = games.Select(x => x.NeuralNetwork).OrderByDescending(x => x.Score).ThenBy(x => x.Steps).First();
+        string jsonString = JsonSerializer.Serialize(best);
+        Console.WriteLine(jsonString);
+
+        string myfile = @"result.txt";
+        using StreamWriter sw = File.CreateText(myfile);
+        sw.WriteLine(JsonSerializer.Serialize(scores));
+        sw.WriteLine("---------");
+        sw.WriteLine(JsonSerializer.Serialize(steps));
+        sw.WriteLine("---------");
+        sw.WriteLine(jsonString);
+    }
+}
