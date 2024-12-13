@@ -46,7 +46,7 @@ public static class NeuralPlayerRunner
 
             var neural = new NeuralNetwork(intermediateNeurons, outputNeurons);
 
-            while (!game.GameOver & !game.Zerou & game.Score < 97 & game.Steps < 2500)
+            while (!game.GameOver & !game.Zerou & game.Steps < 2500)
             {
                 NeuralPlayer.Decide(game.GetData(), game.SnakeGoTo, neural);
                 game.MoveSnake();

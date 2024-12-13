@@ -80,7 +80,7 @@ public class GameState
             }
             MoveSnakeHead(newHeadPosition);
             Score++;
-            Zerou = Grid.AddFood() == 0 || Score == 97;
+            Zerou = Grid.AddFood() == 0;
         }
     }
 

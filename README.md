@@ -221,7 +221,7 @@ A média de movimentos ficou em 678. A quantidade mínima foi 581 e a máxima 81
   <img src="./Docs/dummy_simple.png" style="display: block; margin: 0 auto" />
 </p>
 
-Segue o GIF de uma das partidas completa:
+Segue o GIF de uma das partidas:
 
 <p align="center">
   <img src="./Docs/06_dummy_simple.gif" width="600" style="display: block; margin: 0 auto" />
@@ -249,7 +249,7 @@ A média de movimentos ficou em 958. A quantidade mínima foi 817 e a máxima 10
   <img src="./Docs/neural_simple.png" style="display: block; margin: 0 auto" />
 </p>
 
-Segue o GIF de uma das partidas completa:
+Segue o GIF de uma das partidas:
 
 <p align="center">
   <img src="./Docs/09_neural_simple.gif" width="600" style="display: block; margin: 0 auto" />
@@ -265,7 +265,7 @@ A média de movimentos ficou em 765. A quantidade mínima foi 631 e a máxima 90
   <img src="./Docs/star_simple.png" style="display: block; margin: 0 auto" />
 </p>
 
-Segue o GIF de uma das partidas completa:
+Segue o GIF de uma das partidas:
 
 <p align="center">
   <img src="./Docs/15_star_simple.gif" width="600" style="display: block; margin: 0 auto" />
@@ -293,8 +293,6 @@ Segue o GIF de duas partidas completas:
 
 O treinamento foi feito com 10.000 cobras, jogando por 1000 gerações, totalizando 10.000.000 de partidas.
 
-Perceba que a cobra aprendeu a seguir um padrão de movimento circular, o que diminui as chances de colisão.
-
 Durante o treinamento, algumas cobras conseguiram pontuações muito altas (uma conseguiu até zerar), mas em média elas elas conseguem ocupar apenas metade do tabuleiro.
 
 Esse comportamento de altas pontuações apenas durante o treinamento se deve à aleatoriedade do jogo: provavelmente as comidas foram aparecendo perto da cobra, evitando que ela colidisse consigo mesma.
@@ -311,42 +309,48 @@ A média de movimentos ficou em aaa. A quantidade mínima foi aaa e a máxima aa
   <img src="./Docs/neural_classic_game.png" style="display: block; margin: 0 auto" />
 </p>
 
-Segue o GIF de uma das partidas completa:
+Perceba que a cobra aprendeu a seguir um padrão de movimento circular, o que diminui as chances de colisão, mas ainda é ineficiente em relação à quantidade de movimentos.
+
+Segue o GIF de uma das partidas:
 
 <p align="center">
-  <img src="./Docs/??" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/neural_best_classic.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ### 7.3 Star
 
 Coloquei o Star pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
 
-A média de movimentos ficou em xxx. A quantidade mínima foi xxx e a máxima xxx movimentos.
+A média de movimentos ficou em 1332. A quantidade mínima foi 899 e a máxima 1744 movimentos.
 
-Para ter mais confiança que esse algoritmo sempre ganha, realizei mais 1.000.000 de jogos, e ele GANHOU TODOS.
+Para ter mais confiança que esse algoritmo sempre ganha, realizei mais 100.000 jogos e ele GANHOU TODOS.
 
 <p align="center">
-  <img src="./Docs/???" style="display: block; margin: 0 auto" />
+  <img src="./Docs/star_classic.png" style="display: block; margin: 0 auto" />
 </p>
 
-Segue o GIF de uma das partidas completa:
+Segue o GIF de uma das partidas:
 
 <p align="center">
-  <img src="./Docs/???" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/star_best_classic.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ## 8 - Tabuleiros maiores
 
 Coloquei o Star para jogar em tabuleiros maiores, para ver como se comporta quando o problema escala.
 
-| Size    | Score | Steps | Time     |
-|---------|-------|-------|----------|
-| 10x10   |       |       | 60 s     |
-| 20x20   |       |       |          |
-| 50x50   |       |       |          |
-| 100x100 |       |       |          |
+| Size    | Score | Steps  | Time     |
+|---------|-------|--------|----------|
+| 10x10   | 97    | 1.362  | 0.5 s    |
+| 20x20   | 397   | 21.189 | 1 s      |
+| 50x50   |       |        |          |
+| 100x100 |       |        |          |
 
-GIF do 50x50:
+Veja o GIF do 20x20 (cortei algumas partes do meio):
+
+<p align="center">
+  <img src="./Docs/star_20_20.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
 
 ## 9 - Veredito
 

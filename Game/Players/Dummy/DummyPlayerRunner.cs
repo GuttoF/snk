@@ -25,7 +25,7 @@ public static class DummyPlayerRunner
 
         Parallel.ForEach(games, game =>
         {
-            while (!game.GameOver & !game.Zerou & game.Score < 97 & game.Steps < 1000)
+            while (!game.GameOver & !game.Zerou & game.Steps < 1000)
             {
                 DummyPlayer.Decide(game.GetData(), game.SnakeGoTo);
                 game.MoveSnake();

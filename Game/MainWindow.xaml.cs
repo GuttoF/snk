@@ -12,8 +12,8 @@ namespace Game;
 
 public partial class MainWindow
 {
-    private readonly int _rows = 10;
-    private readonly int _columns = 10;
+    private readonly int _rows = 20;
+    private readonly int _columns = 20;
     private readonly Image[,] _gridImages;
     private GameState _game;
     private PlayerMode _playerMode = PlayerMode.Human;
@@ -130,7 +130,7 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(60);
+			    await Task.Delay(20);
 				var path = StarPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();
@@ -199,10 +199,11 @@ public partial class MainWindow
 
 	private void DrawGrid()
     {
+		var tax = 0.5 / (_rows * _columns);
 		var opct = 1.0;
 		var cells = _game.Snake.CellsPositions.ToList().ConvertAll(x =>
 		{
-			opct -= 0.007;
+			opct -= tax;
 			return new { x.Row, x.Column, Opacity = opct };
 		});
 

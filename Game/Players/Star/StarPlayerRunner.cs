@@ -2,15 +2,14 @@ using Game.Core;
 using System.IO;
 using System.Text.Json;
 using System.Diagnostics;
-using Game.Players.Star;
 
-namespace Game.Players.Dummy;
+namespace Game.Players.Star;
 
 public static class StarPlayerRunner
 {
     public static void Run()
     {
-        const int size = 1_000;
+        const int size = 1;
 
         var timer = new Stopwatch();
         timer.Start();
@@ -21,12 +20,12 @@ public static class StarPlayerRunner
         var games = new List<GameState>();
         for (int i = 0; i < size; i++)
         {
-            games.Add(new GameState(10, 10, GameMode.FixedSize));
+            games.Add(new GameState(50, 50, GameMode.Classic));
         }
 
         Parallel.ForEach(games, game =>
         {
-            while (!game.GameOver & !game.Zerou & game.Score < 97 & game.Steps < 1000)
+            while (!game.GameOver & !game.Zerou)
             {
                 StarPlayer.Decide(game.GetData(), game.SnakeGoTo);
                 game.MoveSnake();
@@ -38,7 +37,7 @@ public static class StarPlayerRunner
 
         timer.Stop();
 
-        Console.WriteLine(JsonSerializer.Serialize(scores));
+        Console.WriteLine(JsonSerializer.Serialize(scores.Distinct()));
         Console.WriteLine(JsonSerializer.Serialize(steps));
 
         TimeSpan timeTaken = timer.Elapsed;
