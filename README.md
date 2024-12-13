@@ -9,7 +9,7 @@ Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*
 Nesse projeto vamos responder todas essas perguntas!
 
 <p align="center">
-  <img src="./Docs/01_dummy_classic.gif" width="500" style="border-radius: 10px; display: block; margin: auto auto" />
+  <img src="./Docs/000_star_20x20.gif" width="500" style="border-radius: 10px; display: block; margin: auto auto" />
 </p>
 
 ## 1 - Implementação do jogo
