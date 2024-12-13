@@ -1,5 +1,7 @@
 # Snake: AI 🆚 A*
 
+[![Tests](https://github.com/ZaqueuCavalcante/snk/actions/workflows/tests.yml/badge.svg)](https://github.com/ZaqueuCavalcante/snk/actions/workflows/tests.yml)
+
 O jogo da cobrinha é um clássico do nokia tijolão. Ele possui regras e objetivos simples, mas ainda sim é bem difícil de zerar.
 
 Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*)? Qual dos dois se sairia melhor?
