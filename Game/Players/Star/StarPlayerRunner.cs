@@ -12,13 +12,13 @@ public static class StarPlayerRunner
         var timer = new Stopwatch();
         timer.Start();
 
-        var game = new GameState(30, 30, GameMode.Classic);
+        var game = new GameState(100, 100, GameMode.Classic);
 
         while (!game.GameOver & !game.Zerou)
         {
             StarPlayer.Decide(game.GetData(), game.SnakeGoTo);
             game.MoveSnake();
-            if (game.Steps % 10_000 == 0) Console.WriteLine($"{game.Score} | {game.Steps}");
+            if (game.Steps % 100_000 == 0) Console.WriteLine($"{game.Score} | {game.Steps}");
         }
 
         Console.WriteLine("--------------------");
@@ -28,12 +28,14 @@ public static class StarPlayerRunner
         Console.WriteLine(JsonSerializer.Serialize(game.Steps));
 
         TimeSpan timeTaken = timer.Elapsed;
-        Console.WriteLine(">>>>> Duration: " + timeTaken.ToString(@"mm\:ss"));
+        Console.WriteLine(">>>>> Duration: " + timeTaken.ToString(@"hh\:mm\:ss"));
 
         string myfile = @"result.txt";
         using StreamWriter sw = File.CreateText(myfile);
         sw.WriteLine(JsonSerializer.Serialize(game.Score));
         sw.WriteLine("---------");
         sw.WriteLine(JsonSerializer.Serialize(game.Steps));
+        sw.WriteLine("---------");
+        sw.WriteLine(timeTaken.ToString(@"hh\:mm\:ss"));
     }
 }
