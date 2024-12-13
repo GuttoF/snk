@@ -150,7 +150,7 @@ Existem várias formas de fazer isso, mas aqui irei utilizar um algoritmo genét
 
 ⚠️ O processo a seguir será repetido por 1000 gerações ⚠️
 
-- 1️⃣ Vamos criar uma população de 50.000 cobras, cada uma com seus próprios pesos aleatórios
+- 1️⃣ Vamos criar uma população de 5000 cobras, cada uma com seus próprios pesos aleatórios
 - 2️⃣ Cada cobra vai ser colocada pra jogar separadamente
 - 3️⃣ Ao final de todos os jogos, vamos analisar o desempenho de cada cobra
 - 4️⃣ Um hanking será montado, ordenando as cobras com maior pontuação e em seguida com o menor número de movimentos realizados
@@ -341,12 +341,14 @@ Segue o GIF de uma das partidas:
 
 Coloquei o Star para jogar em tabuleiros maiores, para ver como se comporta quando o problema escala.
 
-| Size    | Score | Steps     | Time  |
-|---------|-------|-----------|-------|
-| 10x10   | 97    | 1.362     | 0.5 s |
-| 20x20   | 397   | 21.189    | 1 s   |
-| 50x50   | 2497  | 1.012.013 | 6 min |
-| 100x100 |       |           |       |
+| Size    | Score  | Steps     | Time  |
+|---------|--------|-----------|-------|
+| 10x10   | 97     | 1.362     | 0.5 s |
+| 20x20   | 397    | 21.189    | 1 s   |
+| 30x30   | 897    | 134.288   | 8 s   |
+| 40x40   | 1.597  | 432.018   | 1 min |
+| 50x50   | 2.497  | 1.113.083 | 6 min |
+| 100x100 |        |           |       |
 
 Veja o GIF do 20x20 (cortei algumas partes do meio):
 
