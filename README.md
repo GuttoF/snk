@@ -339,12 +339,12 @@ Segue o GIF de uma das partidas:
 
 Coloquei o Star para jogar em tabuleiros maiores, para ver como se comporta quando o problema escala.
 
-| Size    | Score | Steps  | Time     |
-|---------|-------|--------|----------|
-| 10x10   | 97    | 1.362  | 0.5 s    |
-| 20x20   | 397   | 21.189 | 1 s      |
-| 50x50   |       |        |          |
-| 100x100 |       |        |          |
+| Size    | Score | Steps     | Time  |
+|---------|-------|-----------|-------|
+| 10x10   | 97    | 1.362     | 0.5 s |
+| 20x20   | 397   | 21.189    | 1 s   |
+| 50x50   | 2497  | 1.012.013 | 6 min |
+| 100x100 |       |           |       |
 
 Veja o GIF do 20x20 (cortei algumas partes do meio):
 
