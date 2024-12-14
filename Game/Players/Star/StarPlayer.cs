@@ -17,7 +17,7 @@ public static class StarPlayer
         var exists = new List<bool>();
         var directions = data.HeadPosition.GetStarDirections(rows, columns);
         var options = directions.Select(data.HeadPosition.MoveTo).Where(p => data.Grid[p.Row, p.Column] == 0).ToList();
-        if (percentage > 0.40 && options.Count == 2)
+        if (percentage > 0.60 && options.Count == 2)
         {
             foreach (var currentPosition in options)
             {
@@ -40,13 +40,16 @@ public static class StarPlayer
                 }
 
                 var pathExists = true;
+                var count = int.MaxValue;
                 foreach (var neighbor in neighbors)
                 {
-                    if (pathExists)
-                    {
-                        pathExists = StarPathfinder.PathExists(data.Grid, neighbor, data.FoodPosition);
-                    }
+                    var (pe, c) = StarPathfinder.PathExists(data.Grid, neighbor, data.FoodPosition);
+
+                    if (!pe) pathExists = false;
+
+                    if (c < count) count = c;
                 }
+
                 exists.Add(pathExists);
                 data.Grid[currentPosition.Row, currentPosition.Column] = (int) CellType.Empty;
                 data.Grid[data.TailPosition.Row, data.TailPosition.Column] = (int) CellType.SnakeTail;

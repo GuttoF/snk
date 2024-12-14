@@ -12,7 +12,7 @@ public static class StarPlayerRunner
         var timer = new Stopwatch();
         timer.Start();
 
-        var game = new GameState(20, 20, GameMode.Classic);
+        var game = new GameState(6, 6, GameMode.Classic);
 
         while (!game.GameOver & !game.Zerou)
         {
@@ -24,9 +24,6 @@ public static class StarPlayerRunner
         Console.WriteLine("--------------------");
         timer.Stop();
 
-        Console.WriteLine(JsonSerializer.Serialize(game.Score));
-        Console.WriteLine(JsonSerializer.Serialize(game.Steps));
-
         TimeSpan timeTaken = timer.Elapsed;
         Console.WriteLine(">>>>> Duration: " + timeTaken.ToString(@"hh\:mm\:ss"));
 
@@ -35,6 +32,8 @@ public static class StarPlayerRunner
         sw.WriteLine(JsonSerializer.Serialize(game.Score));
         sw.WriteLine("---------");
         sw.WriteLine(JsonSerializer.Serialize(game.Steps));
+        sw.WriteLine("---------");
+        sw.WriteLine(JsonSerializer.Serialize(game.StepsPerFood));
         sw.WriteLine("---------");
         sw.WriteLine(timeTaken.ToString(@"hh\:mm\:ss"));
     }

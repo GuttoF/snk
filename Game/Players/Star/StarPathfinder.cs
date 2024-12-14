@@ -85,7 +85,7 @@ public static class StarPathfinder
         }
     }
 
-    public static bool PathExists(int[,] grid, Position startPosition, Position targetPosition)
+    public static (bool, int) PathExists(int[,] grid, Position startPosition, Position targetPosition)
     {
         var rows = grid.GetLength(0);
         var columns = grid.GetLength(1);
@@ -100,7 +100,7 @@ public static class StarPathfinder
         {
             if (toSearch.Count == 0)
             {
-                return false;
+                return (false, processed.Count);
             }
 
             var current = toSearch[0];
@@ -117,7 +117,7 @@ public static class StarPathfinder
 
             if (current == target)
             {
-                return true;
+                return (true, processed.Count);
             }
 
             // Calculate neighbors
