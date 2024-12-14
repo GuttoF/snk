@@ -1,5 +1,10 @@
 ## TODOS
 
+NOVA METRICA:
+- Quantos passos ela deu ate chegar em cada comida?
+
+
+
 - Portais (por tempo limitado)
 - Obstaculos (clicar e adicionar)
 - Comida que se mexe (mais devagar?)

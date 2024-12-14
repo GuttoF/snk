@@ -11,7 +11,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(0, 0);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Down]);
     }
@@ -21,7 +21,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(0, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left]);
     }
@@ -31,7 +31,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(1, 0);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right, Direction.Down]);
     }
@@ -41,7 +41,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(1, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up, Direction.Right]);
     }
@@ -52,7 +52,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(0, 2);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Down]);
     }
@@ -62,7 +62,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(0, 3);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left]);
     }
@@ -72,7 +72,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(1, 0);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right, Direction.Down]);
     }
@@ -82,7 +82,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(1, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up, Direction.Right]);
     }
@@ -93,7 +93,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(0, 4);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Down]);
     }
@@ -103,7 +103,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(0, 5);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left]);
     }
@@ -113,7 +113,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(1, 4);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right, Direction.Down]);
     }
@@ -123,7 +123,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(1, 5);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up]);
     }
@@ -134,7 +134,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(2, 0);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Down]);
     }
@@ -144,7 +144,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(2, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Up]);
     }
@@ -154,7 +154,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(3, 0);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right, Direction.Down]);
     }
@@ -164,7 +164,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(3, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up, Direction.Right]);
     }
@@ -175,7 +175,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(2, 2);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Down]);
     }
@@ -185,7 +185,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(2, 3);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Up]);
     }
@@ -195,7 +195,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(3, 2);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right, Direction.Down]);
     }
@@ -205,7 +205,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(3, 3);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up, Direction.Right]);
     }
@@ -216,7 +216,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(2, 4);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Down]);
     }
@@ -226,7 +226,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(2, 5);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Up]);
     }
@@ -236,7 +236,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(3, 4);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right, Direction.Down]);
     }
@@ -246,7 +246,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(3, 5);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up]);
     }
@@ -257,7 +257,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(4, 0);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Down]);
     }
@@ -267,7 +267,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(4, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Up]);
     }
@@ -277,7 +277,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(5, 0);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right]);
     }
@@ -287,7 +287,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(5, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up, Direction.Right]);
     }
@@ -298,7 +298,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(4, 2);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Down]);
     }
@@ -308,7 +308,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(4, 1);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Up]);
     }
@@ -318,7 +318,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(5, 2);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right]);
     }
@@ -328,7 +328,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(5, 3);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up, Direction.Right]);
     }
@@ -339,7 +339,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(4, 4);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Down]);
     }
@@ -349,7 +349,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(4, 5);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Left, Direction.Up]);
     }
@@ -359,7 +359,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(5, 4);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Right]);
     }
@@ -369,7 +369,7 @@ public class StarExtensionsTests
         // Arrange
         var position = new Position(5, 5);
         // Act
-        var directions = position.GetStarDirection(6, 6);
+        var directions = position.GetStarDirections(6, 6);
         // Assert
         directions.Should().BeEquivalentTo([Direction.Up]);
     }

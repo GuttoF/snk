@@ -130,7 +130,7 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(30);
+			    await Task.Delay(1);
 				var path = StarPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();

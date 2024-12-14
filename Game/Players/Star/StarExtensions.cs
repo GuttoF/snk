@@ -4,7 +4,7 @@ namespace Game.Players.Star;
 
 public static class StarExtensions
 {
-    public static List<Direction> GetStarDirection(this Position position, int rows, int columns)
+    public static List<Direction> GetStarDirections(this Position position, int rows, int columns)
     {
         var row = position.Row;
         var column = position.Column;
@@ -31,7 +31,7 @@ public static class StarExtensions
         return [Direction.Up, Direction.Right];
     }
 
-	private static readonly Dictionary<char, Direction> DirectionToRotation = new()
+	private static readonly Dictionary<char, Direction> CharToDirection = new()
 	{
 		{ 'U', Direction.Up },
 		{ 'R', Direction.Right },
@@ -40,6 +40,18 @@ public static class StarExtensions
 	};
     public static Direction ToDirection(this char value)
     {
-        return DirectionToRotation[value];
+        return CharToDirection[value];
+    }
+
+	private static readonly Dictionary<Direction, char> DirectionToChar = new()
+	{
+		{ Direction.Up, 'U' },
+		{ Direction.Right, 'R' },
+		{ Direction.Down, 'D' },
+		{ Direction.Left, 'L' },
+	};
+    public static string ToCharString(this Direction value)
+    {
+        return DirectionToChar[value].ToString();
     }
 }
