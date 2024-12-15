@@ -6,66 +6,77 @@ public static class StarPlayer
 {
     public static string Decide(GameStateData data, Action<Direction> snakeGoTo)
     {
-        // Antes de passar o grid pro FindPath, ver se tem duas opcoes possiveis e se uma delas vai criar lacunas
-        // Se uma criar e a outra n, na posicao q criar deve ser colocado um SnakeBody ou Outside
-        // Isso sempre vai fazer a cobra ir pelo caminho que nao cria lacunas
-        // var rows = data.Grid.GetLength(0);
-        // var columns = data.Grid.GetLength(1);
+        var rows = data.Grid.GetLength(0);
+        var columns = data.Grid.GetLength(1);
 
-        // var percentage = data.SnakeSize * 1d / (rows * columns);
+        var percentage = data.SnakeSize * 1d / (rows * columns);
 
-        // var exists = new List<bool>();
-        // var directions = data.HeadPosition.GetStarDirections(rows, columns);
-        // var options = directions.Select(data.HeadPosition.MoveTo).Where(p => data.Grid[p.Row, p.Column] == 0).ToList();
-        // if (percentage > 0.60 && options.Count == 2)
-        // {
-        //     foreach (var currentPosition in options)
-        //     {
-        //         if (currentPosition == data.FoodPosition)
-        //         {
-        //             exists.Add(true);
-        //             continue;
-        //         }
+        var valids = new List<bool>();
+        var directions = data.HeadPosition.GetStarDirections(rows, columns);
+        var options = directions.Select(data.HeadPosition.MoveTo).Where(p => data.Grid[p.Row, p.Column] == 0).ToList();
+        if (percentage > 0.10 && options.Count == 2)
+        {
+            foreach (var option in options)
+            {
+                data.Grid[option.Row, option.Column] = (int) CellType.SnakeBody;
 
-        //         data.Grid[currentPosition.Row, currentPosition.Column] = (int) CellType.SnakeBody;
-        //         data.Grid[data.TailPosition.Row, data.TailPosition.Column] = (int) CellType.Empty;
+                var foundGap = false;
+                for (int row = 0; row < rows-1; row++)
+                {
+                    for (int column = 0; column < columns-1; column++)
+                    {
+                        var pos01 = new Position(row, column);
+                        var pos02 = new Position(row, column+1);
+                        var pos03 = new Position(row+1, column);
+                        var pos04 = new Position(row+1, column+1);
 
-        //         var allDirections = new List<Direction>() { Direction.Right, Direction.Down, Direction.Left, Direction.Up };
-        //         var positions = allDirections.Select(currentPosition.MoveTo).Where(p => p.Row >= 0 && p.Column >= 0 && p.Row < rows && p.Column < columns).ToList();
-        //         var neighbors = new List<Position>();
-        //         foreach (var position in positions)
-        //         {
-        //             var cell = data.Grid[position.Row, position.Column];
-        //             if (cell == 0 && position != data.TailPosition) neighbors.Add(position);
-        //         }
+                        if (data.Grid[pos01.Row, pos01.Column] != 0 ||
+                            data.Grid[pos02.Row, pos02.Column] != 0 ||
+                            data.Grid[pos03.Row, pos03.Column] != 0 ||
+                            data.Grid[pos04.Row, pos04.Column] != 0)
+                        {
+                            continue;
+                        }
 
-        //         var pathExists = true;
-        //         var count = int.MaxValue;
-        //         foreach (var neighbor in neighbors)
-        //         {
-        //             var (pe, c) = StarPathfinder.PathExists(data.Grid, neighbor, data.FoodPosition);
+                        var borders = new List<Position>()
+                        {
+                            pos01.MoveTo(Direction.Left), pos01.MoveTo(Direction.Up),
+                            pos02.MoveTo(Direction.Up), pos02.MoveTo(Direction.Right),
+                            pos03.MoveTo(Direction.Left), pos03.MoveTo(Direction.Down),
+                            pos04.MoveTo(Direction.Right), pos04.MoveTo(Direction.Down),
+                        };
 
-        //             if (!pe) pathExists = false;
+                        var empty = false;
+                        foreach (var border in borders)
+                        {
+                            if (border.IsInside(rows, columns))
+                            {
+                                empty = data.Grid[border.Row, border.Column] == 0;
+                                if (empty) break;
+                            }
+                        }
+                        if (empty) continue;
 
-        //             if (c < count) count = c;
-        //         }
+                        foundGap = true;
+                    }
+                    if (foundGap) break;
+                }
 
-        //         exists.Add(pathExists);
-        //         data.Grid[currentPosition.Row, currentPosition.Column] = (int) CellType.Empty;
-        //         data.Grid[data.TailPosition.Row, data.TailPosition.Column] = (int) CellType.SnakeTail;
-        //     }
+                valids.Add(!foundGap);
+                data.Grid[option.Row, option.Column] = (int) CellType.Empty;
+            }
 
-        //     if (!exists[0] && exists[1])
-        //     {
-        //         snakeGoTo(directions[1]);
-        //         return directions[1].ToCharString();
-        //     }
-        //     if (!exists[1] && exists[0])
-        //     {
-        //         snakeGoTo(directions[0]);
-        //         return directions[0].ToCharString();
-        //     }
-        // }
+            if (!valids[0] && valids[1])
+            {
+                snakeGoTo(directions[1]);
+                return directions[1].ToCharString();
+            }
+            if (!valids[1] && valids[0])
+            {
+                snakeGoTo(directions[0]);
+                return directions[0].ToCharString();
+            }
+        }
 
         var path = StarPathfinder.FindPath(data.Grid, data.HeadPosition, data.TailPosition, data.FoodPosition);
 

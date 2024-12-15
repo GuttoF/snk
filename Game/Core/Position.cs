@@ -16,6 +16,11 @@ public class Position
 		return new(Row + direction.Y, Column + direction.X);
 	}
 
+	public bool IsInside(int rows, int columns)
+	{
+		return Row >= 0 && Row < rows && Column >= 0 && Column < columns;
+	}
+
 	public override bool Equals(object? obj)
 	{
 		return obj is Position position &&

@@ -10,8 +10,6 @@ public class NodeBase
    public int H { get; set; }
    public int F => G + H;
 
-   public bool Walkable { get; set; }
-
    public NodeBase Connection { get; set; }
 
    public List<NodeBase> Neighbors { get; set; }
