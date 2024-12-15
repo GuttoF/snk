@@ -12,8 +12,8 @@ namespace Game;
 
 public partial class MainWindow
 {
-    private readonly int _rows = 6;
-    private readonly int _columns = 6;
+    private readonly int _rows = 10;
+    private readonly int _columns = 10;
     private readonly Image[,] _gridImages;
     private GameState _game;
     private PlayerMode _playerMode = PlayerMode.Human;
@@ -130,7 +130,7 @@ public partial class MainWindow
 	    {
 		    while (!_game.GameOver & !_game.Zerou)
 		    {
-			    await Task.Delay(40);
+			    await Task.Delay(60);
 				var path = StarPlayer.Decide(_game.GetData(), _game.SnakeGoTo);
 			    _game.MoveSnake();
 			    Draw();

@@ -161,28 +161,29 @@ Ao final do treinamento, a melhor cobra (rede neural) será selecionada para com
 Assim, todo treinamento é feito com o objetivo de chegar em duas matrizes de pesos refinados, como as mostradas a seguir:
 
 <p align="center">
-  <img src="./Docs/nn_weights.png" width="400" style="display: block; margin: 0 auto" />
+  <img src="./Docs/07_neural_network_weights.png" width="400" style="display: block; margin: 0 auto" />
 </p>
 
 ## 5 - Star
 
-A parte mais difícil desse jogo é quando a cobra ocupa mais da metade do tabuleiro. A partir daí as chances de se prender no próprio corpo e perder o jogo só aumentam.
+A parte mais difícil desse jogo começa quando a cobra ocupa cerca de metade do tabuleiro. A partir daí as chances de se prender no próprio corpo e perder o jogo só aumentam.
 
-Para lidar com isso, o algoritmo a seguir se baseia em duas coisas:
-- Limitar as direções de movimento da cobra em cada posição (seguindo um padrão bem definido)
-- Buscar o menor caminho até a comida, respeitando o limite anterior (usando o algoritmo A*)
+Para lidar com isso, o algoritmo a seguir se baseia em 3 coisas:
+- **Limitar as direções** de movimento da cobra em cada posição (seguindo um padrão bem definido)
+- Buscar o **menor caminho até a comida**, respeitando o limite anterior (usando o algoritmo A*)
+- Evitar ao máximo que a cobra crie **regiões vazias fechadas** no tabuleiro, para que a comida surja em locais mais acessíveis
 
-### 5.1 - Limitando os caminhos possíveis
+### 5.1 - Limitando as direções
 
 Para limitar as direções possíveis de movimento da cobra em cada posição, repetimos o padrão a seguir por todo o tabuleiro.
 
 Dessa forma, basta que a cobra respeite esses limites para que jamais fique sem saída e acabe perdendo o jogo.
 
 <p align="center">
-  <img src="./Docs/pattern_astar.gif" width="900" style="display: block; margin: 0 auto" />
+  <img src="./Docs/08_star_pattern.gif" width="900" style="display: block; margin: 0 auto" />
 </p>
 
-### 5.2 - A* Pathfinder
+### 5.2 - Buscando o menor caminho
 
 Aqui utilizamos o algoritmo pathfinder A* para definir qual o menor caminho da cabeça da cobra até a comida.
 
@@ -194,12 +195,31 @@ A seguir podemos ver isso tudo funcionando:
 - Os pontinhos amarelos no GIF representam o caminho calculado
 
 <p align="center">
-  <img src="./Docs/05_star_spoiler.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/09_star_classic_10x10_spoiler.gif" width="600" style="display: block; margin: 0 auto" />
+</p>
+
+### 5.3 Evitando regiões vazias fechadas
+
+Ao se mover sempre buscando o menor caminho, a cobra acaba criando regiões vazias fechadas no tabuleiro.
+
+Quando uma comida aparece nesses locais, é preciso seguir a calda até que a cobra possa acessar a região da comida novamente.
+
+Isso geralmente custa muitos movimentos, o que impacta significativamente no desempenho final da cobra.
+
+Para lidar com esse problema, imagine que a cobra possui duas direções pra seguir (D1 e D2):
+- Se ir na direção D1 produz uma região fechada, mas ir na direção D2 não, então a cobra acaba indo pra D2
+- A mesma lógica se aplica pro caso de D2 gerar região fechada e D1 não
+- Caso as duas produzam ou nenhuma das duas produza, a cobra vai pelo menor caminho, como definido no passo anterior
+
+Veja a seguir um exemplo de geração de regiões vazias e de como elas reduzem a eficiência da cobra:
+
+<p align="center">
+  <img src="./Docs/10_star_classic_10x10_empty_regions.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ## 6 - Versão mais simples
 
-Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar com a versão mais simples do jogo, onde a cobra não cresce ao pegar a comida.
+Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar com a versão mais simples, onde a cobra não cresce ao pegar a comida.
 
 É esperado que todos os algoritmos se saiam bem nessa versão, pois é impossível perder o jogo por colisão com o próprio corpo.
 
@@ -207,46 +227,48 @@ Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar co
 
 Coloquei esse monte de if/else pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
 
-Veja que a quantidade de movimentos varia devido à aleatoriedade do jogo, pois a comida pode aparecer em qualquer lugar vazio do tabuleiro.
+Veja que a quantidade de movimentos total varia devido à aleatoriedade do jogo, pois a comida pode aparecer em qualquer lugar vazio do tabuleiro.
 
-A média de movimentos ficou em 678. A quantidade mínima foi 581 e a máxima 812 movimentos.
+A média de movimentos até zerar ficou em 678. A quantidade mínima foi 581 e a máxima 812 movimentos.
 
 <p align="center">
-  <img src="./Docs/dummy_simple.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/11_dummy_fixed_size_10x10_1000_games_steps.png" style="display: block; margin: 0 auto" />
 </p>
 
 Segue o GIF de uma das partidas:
 
 <p align="center">
-  <img src="./Docs/06_dummy_simple.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/12_dummy_fixed_size_10x10_complete.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ### 6.2 Neural
 
 O treinamento foi feito com 5000 cobras, jogando por 1000 gerações, totalizando 5.000.000 de partidas.
 
-As cobras rapidamente aprenderam a perseguir a comida, pois desde a primeira geração já surgiu pelo menos uma que ganhou o jogo.
+As cobras rapidamente aprenderam a perseguir a comida, pois desde a primeira geração já surgiu pelo menos uma que ganhou o jogo (atingiu 97 pontos).
 
 A partir daí, as cobras que conseguiam zerar com o menor número de movimentos foram sendo selecionadas e passadas para próxima geração.
 
+Podemos verificar a seguir a queda na média de movimentos com o passar das gerações:
+
 <p align="center">
-  <img src="./Docs/neural_simple_train.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/13_neural_fixed_size_10x10_train.png" style="display: block; margin: 0 auto" />
 </p>
 
 No final foi obtida a cobra com o melhor desempenho, ou seja, que atinge a pontuação máxima utilizando o menor número de movimentos.
 
-Coloquei ela pra jogar 1000 partidas e ela ganhou (atingiu 97 pontos) em todas!
+Também coloquei a cobra pra jogar 1000 partidas e ela ganhou (atingiu 97 pontos) em todas!
 
 A média de movimentos ficou em 958. A quantidade mínima foi 817 e a máxima 1099 movimentos.
 
 <p align="center">
-  <img src="./Docs/neural_simple.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/14_neural_simple.png" style="display: block; margin: 0 auto" />
 </p>
 
 Segue o GIF de uma das partidas:
 
 <p align="center">
-  <img src="./Docs/09_neural_simple.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/15_neural_simple.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ### 6.3 Star
@@ -256,13 +278,13 @@ Coloquei o Star pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em toda
 A média de movimentos ficou em 765. A quantidade mínima foi 631 e a máxima 901 movimentos.
 
 <p align="center">
-  <img src="./Docs/star_simple.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/16_star_simple.png" style="display: block; margin: 0 auto" />
 </p>
 
 Segue o GIF de uma das partidas:
 
 <p align="center">
-  <img src="./Docs/15_star_simple.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/17_star_simple.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ## 7 - Versão clássica
@@ -271,13 +293,17 @@ Finalmente vamos realizar a disputa na versão clássica do jogo.
 
 ### 7.1 Dummy
 
-Ela só conseguiu pegar em média 19 comidas, ou seja, só conseguiu ocupar 1/5 do tabuleiro.
+Ela só conseguiu pegar em média 19 comidas, ou seja, só conseguiu ocupar 1/5 do tabuleiro antes de morrer.
+
+O valor máximo de 43 pontos se deve ao fato que a comida aparece em locais aleatórios, de forma que a cobra teve sorte da comida nascer em locais favoráreis.
+
+Como o algoritmo não usa nenhuma estratégia para evitar que a cobra fique sem saída, seu desempenho geral acaba sendo extremamente baixo.
 
 <p align="center">
-  <img src="./Docs/dummy_classic.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/18_dummy_classic.png" style="display: block; margin: 0 auto" />
 </p>
 
-Segue o GIF de duas partidas completas:
+Segue o GIF de duas partidas completas (com desempenhos de 20 e 31 pontos):
 
 <p align="center">
   <img src="./Docs/19_dummy_classic.gif" width="600" style="display: block; margin: 0 auto" />
@@ -287,46 +313,48 @@ Segue o GIF de duas partidas completas:
 
 O treinamento foi feito com 10.000 cobras, jogando por 1000 gerações, totalizando 10.000.000 de partidas.
 
-Durante o treinamento, algumas cobras conseguiram pontuações muito altas (uma conseguiu até zerar), mas em média elas elas conseguem ocupar apenas metade do tabuleiro.
+Durante o treinamento, algumas cobras conseguiram pontuações muito altas (uma conseguiu até zerar), mas em média elas conseguem ocupar apenas metade do tabuleiro.
 
 Esse comportamento de altas pontuações apenas durante o treinamento se deve à aleatoriedade do jogo: provavelmente as comidas foram aparecendo perto da cobra, evitando que ela colidisse consigo mesma.
 
 <p align="center">
-  <img src="./Docs/neural_classic.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/20_neural_classic.png" style="display: block; margin: 0 auto" />
 </p>
 
-Coloquei ela pra jogar 1000 partidas e ela não conseguiu ganhar nenhuma.
+Coloquei a cobra pra jogar 1000 partidas e ela não conseguiu ganhar nenhuma.
 
-A média de movimentos ficou em aaa. A quantidade mínima foi aaa e a máxima aaa movimentos.
+A pontuação média foi de 34 pontos, com mínima de 17 e máxima de 74.
+
+A média de movimentos ficou em 874, com mínima de 355 e máxima de 2500.
 
 <p align="center">
-  <img src="./Docs/neural_classic_game.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/21_neural_classic_game.png" style="display: block; margin: 0 auto" />
 </p>
 
-Perceba que a cobra aprendeu a seguir um padrão de movimento circular, o que diminui as chances de colisão, mas ainda é ineficiente em relação à quantidade de movimentos.
+Perceba que a cobra aprendeu a seguir um padrão de movimento circular anti-horário, o que diminui as chances de colisão, mas ainda é ineficiente em relação à quantidade de movimentos.
 
 Segue o GIF de uma das partidas:
 
 <p align="center">
-  <img src="./Docs/neural_best_classic.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/22_neural_best_classic.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ### 7.3 Star
 
 Coloquei o Star pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
 
-A média de movimentos ficou em 1332. A quantidade mínima foi 899 e a máxima 1744 movimentos.
+A média de movimentos ficou em 1332, com mínima de 899 e máxima 1744.
 
 Para ter mais confiança que esse algoritmo sempre ganha, realizei mais 100.000 jogos e ele GANHOU TODOS.
 
 <p align="center">
-  <img src="./Docs/star_classic.png" style="display: block; margin: 0 auto" />
+  <img src="./Docs/23_star_classic.png" style="display: block; margin: 0 auto" />
 </p>
 
 Segue o GIF de uma das partidas:
 
 <p align="center">
-  <img src="./Docs/star_best_classic.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/24_star_best_classic.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ## 8 - Tabuleiros maiores
@@ -345,14 +373,14 @@ Coloquei o Star para jogar em tabuleiros maiores, para ver como se comporta quan
 Veja o GIF do 20x20 (cortei algumas partes do meio):
 
 <p align="center">
-  <img src="./Docs/star_20_20.gif" width="600" style="display: block; margin: 0 auto" />
+  <img src="./Docs/25_star_20_20.gif" width="600" style="display: block; margin: 0 auto" />
 </p>
 
 ## 9 - Veredito
 
 Na versão mais simples, o Dummy acabou tendo o melhor desempenho, seguido pelo Star e por fim o Neural.
 
-Já na versão clássica, o Star foi perfeito, ganhando simplesmente todos os jogos que disputou. Dummy e Neural ficaram tecnicamente empatados.
+Já na versão clássica, o Star foi perfeito, ganhando simplesmente todos os jogos que disputou. O Neural ficou em segundo lugar e o Dummy em último.
 
 ## 10 - Referências
 
@@ -363,3 +391,7 @@ Ele fez uma série com 3 vídeos no canal com diversos algoritmos e técnicas pa
 No último vídeo ele apresenta essa sacada usada no player Star, onde basta limitar o padrão de movimento da cobra em cada posição para que ela nunca colida consigo mesma.
 
 Segue o vídeo: https://youtu.be/Vii9XiQ8bec
+
+### Gráficos e estatísticas
+
+- Utilizei o Briefer pra gerar os gráficos, é muito simples de usar e de baixar as imagens.
