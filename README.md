@@ -2,14 +2,14 @@
 
 [![Tests](https://github.com/ZaqueuCavalcante/snk/actions/workflows/tests.yml/badge.svg)](https://github.com/ZaqueuCavalcante/snk/actions/workflows/tests.yml)
 
-O jogo da cobrinha é um clássico do nokia tijolão. Ele possui regras e objetivos simples, mas ainda sim é bem difícil de zerar.
+O jogo da cobrinha é um clássico do Nokia tijolão. Ele possui regras e objetivos simples, mas ainda sim é bem difícil de zerar.
 
 Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*)? Qual dos dois se sairia melhor?
 
 Nesse projeto vamos responder todas essas perguntas!
 
 <p align="center">
-  <img src="./Docs/000_star_20x20.gif" width="500" style="border-radius: 10px; display: block; margin: auto auto" />
+  <img src="./Docs/00_star_classic_20x20.gif" width="500" style="border-radius: 10px; display: block; margin: auto auto" />
 </p>
 
 ## 1 - Implementação do jogo
@@ -18,15 +18,13 @@ Acabei fazendo tudo em C#, por ser a linguagem que mais domino. Pra UI usei WPF,
 
 Também implementei duas versões do jogo:
 - Uma mais simples, onde a cobra não aumenta de tamanho ao pegar a comida.
-- A versão clássica, onde a cobra aumenta uma unidade a cada comida coletada.
+- A clássica, onde a cobra aumenta uma unidade a cada comida coletada.
 
-Independente da versão, é preciso atingir uma pontuação de 97 pontos para ganhar. Afinal, é um tabuleiro 10x10 e a cobra inicia com tamanho 3.
-
-Pensar em uma versão mais simples do problema geralmente ajuda no entendimento e na solução do problema original.
+Pensar em uma versão mais simples do problema geralmente ajuda no entendimento e na resolução do problema original.
 
 <p align="center">
-  <img src="./Docs/00_dummy_fixed_size.gif" width="500" style="border-radius: 10px;" />
-  <img src="./Docs/01_dummy_classic.gif" width="500" style="border-radius: 10px;" />
+  <img src="./Docs/01_dummy_fixed_size_10x10.gif" width="500" style="border-radius: 10px;" />
+  <img src="./Docs/02_dummy_classic_10x10.gif" width="500" style="border-radius: 10px;" />
 </p>
 
 Organizei o projeto em 3 partes:
@@ -194,7 +192,7 @@ Dessa forma, basta que a cobra respeite esses limites para que jamais fique sem 
 
 Aqui utilizamos o algoritmo pathfinder A* para definir qual o menor caminho da cabeça da cobra até a comida.
 
-Caso não seja possível chegar até a comida, busca-se o menor caminho até a calda da cobra. Dessa forma, em algum momento a cobra vai chegar numa posição na qual é possível acessar a comida novamente.
+Caso não seja possível chegar até a comida, busca-se o menor caminho até a calda da cobra. Dessa forma, em algum momento a cobra vai chegar numa posição em que é possível acessar a comida novamente.
 
 A seguir podemos ver isso tudo funcionando:
 - A cobra sempre se move respeitando as setas (limites de direção)
