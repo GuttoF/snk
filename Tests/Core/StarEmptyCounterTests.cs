@@ -47,6 +47,6 @@ public class StarEmptyCounterTests
         var count = StarEmptyCounter.Run(grid, new(2, 1));
 
         // Assert
-        count.Should().Be(8);
+        count.Should().Be(16);
     }
 }

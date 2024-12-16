@@ -225,7 +225,7 @@ Agora que já entendemos como o jogo e os algoritmos funcionam, vamos iniciar co
 
 ### 6.1 Dummy
 
-Coloquei esse monte de if/else pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
+O player Dummy jogou 1000 partidas e ganhou (atingiu 97 pontos) todas!
 
 Veja que a quantidade de movimentos total varia devido à aleatoriedade do jogo, pois a comida pode aparecer em qualquer lugar vazio do tabuleiro.
 
@@ -257,7 +257,7 @@ Podemos verificar a seguir a queda na média de movimentos com o passar das gera
 
 No final foi obtida a cobra com o melhor desempenho, ou seja, que atinge a pontuação máxima utilizando o menor número de movimentos.
 
-Também coloquei a cobra pra jogar 1000 partidas e ela ganhou (atingiu 97 pontos) em todas!
+O player Neural também jogou 1000 partidas e ganhou (atingiu 97 pontos) todas!
 
 A média de movimentos ficou em 958. A quantidade mínima foi 817 e a máxima 1099 movimentos.
 
@@ -273,7 +273,7 @@ Segue o GIF de uma das partidas:
 
 ### 6.3 Star
 
-Coloquei o Star pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
+O player Star também jogou 1000 partidas e ganhou (atingiu 97 pontos) todas!
 
 A média de movimentos ficou em 765. A quantidade mínima foi 631 e a máxima 901 movimentos.
 
@@ -321,7 +321,7 @@ Esse comportamento de altas pontuações apenas durante o treinamento se deve à
   <img src="./Docs/20_neural_classic.png" style="display: block; margin: 0 auto" />
 </p>
 
-Coloquei a cobra pra jogar 1000 partidas e ela não conseguiu ganhar nenhuma.
+Nessa versão o player Neural jogou as 1000 partidas, mas não conseguiu ganhar nenhuma.
 
 A pontuação média foi de 34 pontos, com mínima de 17 e máxima de 74.
 
@@ -341,7 +341,7 @@ Segue o GIF de uma das partidas:
 
 ### 7.3 Star
 
-Coloquei o Star pra jogar 1000 partidas e ele ganhou (atingiu 97 pontos) em todas!
+O player Star jogou 1000 partidas e ganhou (atingiu 97 pontos) todas!
 
 A média de movimentos ficou em 1332, com mínima de 899 e máxima 1744.
 
@@ -368,7 +368,6 @@ Coloquei o Star para jogar em tabuleiros maiores, para ver como se comporta quan
 | 30x30   | 897    | 69.296    | 25 s   |
 | 40x40   | 1.597  | 226.289   | 3 min  |
 | 50x50   | 2.497  | 616.980   | 18 min |
-| 100x100 |        |           |        |
 
 Veja o GIF do 20x20 (cortei algumas partes do meio):
 
@@ -380,7 +379,7 @@ Veja o GIF do 20x20 (cortei algumas partes do meio):
 
 Na versão mais simples, o Dummy acabou tendo o melhor desempenho, seguido pelo Star e por fim o Neural.
 
-Já na versão clássica, o Star foi perfeito, ganhando simplesmente todos os jogos que disputou. O Neural ficou em segundo lugar e o Dummy em último.
+Já na versão clássica, o Star foi o melhor, ganhando todos os jogos que disputou. O Neural ficou em segundo lugar e o Dummy em último.
 
 ## 10 - Referências
 
