@@ -361,14 +361,14 @@ Segue o GIF de uma das partidas:
 
 Coloquei o Star para jogar em tabuleiros maiores, para ver como se comporta quando o problema escala.
 
-| Size    | Score  | Steps     | Time  |
-|---------|--------|-----------|-------|
-| 10x10   | 97     | 1.140     | 0.2 s |
-| 20x20   | 397    | 13.623    | 2 s   |
-| 30x30   | 897    | 69.296    | 25 s  |
-| 40x40   | 1.597  | 226.289   | 3 min |
-| 50x50   | 2.497  | 1.113.083 | 6 min |
-| 100x100 |        |           |       |
+| Size    | Score  | Steps     | Time   |
+|---------|--------|-----------|--------|
+| 10x10   | 97     | 1.140     | 0.2 s  |
+| 20x20   | 397    | 13.623    | 2 s    |
+| 30x30   | 897    | 69.296    | 25 s   |
+| 40x40   | 1.597  | 226.289   | 3 min  |
+| 50x50   | 2.497  | 616.980   | 18 min |
+| 100x100 |        |           |        |
 
 Veja o GIF do 20x20 (cortei algumas partes do meio):
 

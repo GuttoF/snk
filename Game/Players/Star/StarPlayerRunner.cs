@@ -12,7 +12,7 @@ public static class StarPlayerRunner
         var timer = new Stopwatch();
         timer.Start();
 
-        var game = new GameState(50, 50, GameMode.Classic);
+        var game = new GameState(20, 20, GameMode.Classic);
 
         while (!game.GameOver & !game.Zerou)
         {

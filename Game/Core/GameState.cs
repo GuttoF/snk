@@ -13,6 +13,7 @@ public class GameState
     public bool GameOver { get; private set; }
     public bool Zerou { get; private set; }
 
+    public int StepsToFood { get; private set; }
     public List<int> StepsPerFood { get; private set; }
 
     public GameMode Mode { get; private set; }
@@ -59,6 +60,7 @@ public class GameState
     {
         Snake.ChangeDirection();
         Steps++;
+        StepsToFood++;
 
         var newHeadPosition = Snake.NextHeadPosition();
         var targetCell = WillHit(newHeadPosition);
@@ -84,9 +86,9 @@ public class GameState
             }
             MoveSnakeHead(newHeadPosition);
             Score++;
-            var deltaSteps = Steps - StepsPerFood.LastOrDefault(0);
-            StepsPerFood.Add(deltaSteps);
+            StepsPerFood.Add(StepsToFood);
             Zerou = Grid.AddFood() == 0;
+            StepsToFood = 0;
         }
     }
 
