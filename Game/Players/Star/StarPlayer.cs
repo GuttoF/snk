@@ -15,7 +15,7 @@ public static class StarPlayer
         var directions = data.HeadPosition.GetStarDirections(rows, columns);
         var options = directions.Select(data.HeadPosition.MoveTo).Where(p => data.Grid[p.Row, p.Column] == 0).ToList();
 
-        if (percentage > 0.20 && options.Count == 2)
+        if (percentage > 0.25 && options.Count == 2)
         {
             foreach (var option in options)
             {
@@ -29,12 +29,12 @@ public static class StarPlayer
 
             var limit = rows;
 
-            if (counts[0] <= limit && counts[1] > limit)
+            if (counts[1] > counts[0])
             {
                 snakeGoTo(directions[1]);
                 return directions[1].ToCharString();
             }
-            if (counts[1] <= limit && counts[0] > limit)
+            if (counts[0] > counts[1])
             {
                 snakeGoTo(directions[0]);
                 return directions[0].ToCharString();
