@@ -4,6 +4,9 @@ NOVA METRICA:
 - Quantos passos ela deu ate chegar em cada comida?
 
 
+find grid holes algorithm
+
+
 
 - Portais (por tempo limitado)
 - Obstaculos (clicar e adicionar)

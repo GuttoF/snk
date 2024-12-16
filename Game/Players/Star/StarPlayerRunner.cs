@@ -18,7 +18,6 @@ public static class StarPlayerRunner
         {
             StarPlayer.Decide(game.GetData(), game.SnakeGoTo);
             game.MoveSnake();
-            if (game.Steps % 100_000 == 0) Console.WriteLine($"{game.Score} | {game.Steps}");
         }
 
         Console.WriteLine("--------------------");
