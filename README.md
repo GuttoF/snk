@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/ZaqueuCavalcante/snk/actions/workflows/tests.yml/badge.svg)](https://github.com/ZaqueuCavalcante/snk/actions/workflows/tests.yml)
 
-O jogo da cobrinha é um clássico do Nokia tijolão. Ele possui regras e objetivos simples, mas ainda sim é bem difícil de zerar.
+O Snake Game é um clássico do Nokia tijolão. Ele possui regras e objetivos simples, mas ainda sim é bem difícil de zerar.
 
 Será que uma AI (rede neural) consegue zerar ele? E um algoritmo pathfinder (A*)? Qual dos dois se sairia melhor?
 
